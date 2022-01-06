@@ -2,6 +2,9 @@
 
 require_once 'vendor/autoload.php';
 
+define('TITLE','Cadastro de Cliente');
+
+
 use \App\Model\{Cliente, ClienteDao};
 
 if ($_SERVER["REQUEST_METHOD"] === 'POST'){

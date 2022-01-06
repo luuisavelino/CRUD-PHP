@@ -21,7 +21,6 @@ class ClienteDao {
         $order = strlen($order) ? 'ORDER BY '.$order : '';
         $limit = strlen($limit) ? 'LIMIT '.$limit : '';
     
-        //MONTA A QUERY
         $query = 'SELECT '.$fields.' FROM clientes '.$where.' '.$order.' '.$limit;
 
         $stmt = Conexao::getConn()->prepare($query);
@@ -32,8 +31,23 @@ class ClienteDao {
             return $resultado;
         }
         return [];
-
     }
+
+
+    public function readCliente($id) {
+  
+        $query = 'SELECT * FROM clientes WHERE id ='.$id;
+
+        $stmt = Conexao::getConn()->prepare($query);
+        $stmt->execute();
+
+        if($stmt->rowCount()>0){
+            $resultado = $stmt->fetchAll(\PDO::FETCH_ASSOC);
+            return $resultado;
+        }
+        return [];
+    }
+
 
     public function update(Cliente $p) {
         $query = 'UPDATE clientes SET nome = ?, empresa = ? WHERE id = ?';
