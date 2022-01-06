@@ -15,20 +15,10 @@ if(!isset($_GET['id']) or !is_numeric($_GET['id'])){
 $clienteSelecionado = ClienteDao::readCliente($_GET['id']);
 
 
-if ($_SERVER["REQUEST_METHOD"] === 'POST'){
-
-    if (empty($_POST['nome']) || empty($_POST['empresa'])) {
-        header('location: cadastro-clientes.php');
-        exit;
-    }
-
-    $cliente = new Cliente();
-    $cliente->setId($_GET['id']);
-    $cliente->setNome($_POST['nome']);
-    $cliente->setEmpresa($_POST['empresa']);
+if (isset($_POST['excluir'])){
 
     $ClienteDao = new ClienteDao();
-    $ClienteDao->update($cliente);
+    $ClienteDao->delete($_GET['id']);
 
     header('location: clientes.php?status=success');
     exit;
@@ -37,5 +27,5 @@ if ($_SERVER["REQUEST_METHOD"] === 'POST'){
 
 
 include __DIR__.'/includes/header.php';
-include __DIR__.'/includes/formulario.php';
+include __DIR__.'/includes/exclusao.php';
 include __DIR__.'/includes/footer.php';

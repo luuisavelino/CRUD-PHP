@@ -43,7 +43,7 @@ if(isset($_GET['status'])){
               <td><?=$cliente['empresa']?></td>
               <td> 
                 <a href="editar-clientes.php?id=<?=$cliente['id']?>"><button type="button" class="btn btn-primary">Editar</button></a>
-                <a href="excluir.php?id=<?=$cliente['id']?>"><button type="button" class="btn btn-danger">Excluir</button></a>
+                <a href="excluir-clientes.php?id=<?=$cliente['id']?>"><button type="button" class="btn btn-danger">Excluir</button></a>
               </td>
             </tr>
           <?php endforeach; ?>
