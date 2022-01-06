@@ -1,0 +1,56 @@
+<?php
+
+namespace App\Model;
+
+class ClienteDao {
+
+    public function create(Cliente $p) {
+
+        $query = 'INSERT INTO clientes (nome, empresa) VALUES (?,?)';        
+        
+        $stmt = Conexao::getConn()->prepare($query);
+        $stmt->bindValue(1, $p->getNome());
+        $stmt->bindValue(2, $p->getEmpresa());
+        $stmt->execute();
+    }
+
+
+    public function read($fields = '*', $where = null, $order = null, $limit = null) {
+
+        $where = strlen($where) ? 'WHERE '.$where : '';
+        $order = strlen($order) ? 'ORDER BY '.$order : '';
+        $limit = strlen($limit) ? 'LIMIT '.$limit : '';
+    
+        //MONTA A QUERY
+        $query = 'SELECT '.$fields.' FROM clientes '.$where.' '.$order.' '.$limit;
+
+        $stmt = Conexao::getConn()->prepare($query);
+        $stmt->execute();
+
+        if($stmt->rowCount()>0){
+            $resultado = $stmt->fetchAll(\PDO::FETCH_ASSOC);
+            return $resultado;
+        }
+        return [];
+
+    }
+
+    public function update(Cliente $p) {
+        $query = 'UPDATE clientes SET nome = ?, empresa = ? WHERE id = ?';
+
+        $stmt = Conexao::getConn()->prepare($query);
+        $stmt->bindValue(1, $p->getNome());
+        $stmt->bindValue(2, $p->getEmpresa());
+        $stmt->bindValue(3, $p->getId());
+        
+        $stmt->execute();
+    }
+
+    public function delete($id) {
+        $query = 'DELETE FROM clientes WHERE id = ?';
+
+        $stmt = Conexao::getConn()->prepare($query);
+        $stmt->bindValue(1, $id);
+        $stmt->execute();
+    }
+}
