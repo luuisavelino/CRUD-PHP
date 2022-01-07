@@ -17,7 +17,7 @@ if(isset($_GET['status'])){
 
 
 <main>
-
+  <?=$mensagem?>
   <section>
       <a href="cadastro-clientes.php">
         <button class="btn btn-success">Novo cliente</button>
@@ -25,6 +25,7 @@ if(isset($_GET['status'])){
   </section>
 
   <section>
+    
     <table class="table bg-light mt-4">
       <thead>
         <tr>
@@ -35,22 +36,22 @@ if(isset($_GET['status'])){
         </tr> 
       </thead>
       <tbody>
-        <?=$mensagem?>
         <?php foreach($clientes as $cliente): ?>
-            <tr>
-              <td><?=$cliente['id']?></td>
-              <td><?=$cliente['nome']?></td>
-              <td><?=$cliente['empresa']?></td>
-              <td> 
-                <a href="editar-clientes.php?id=<?=$cliente['id']?>"><button type="button" class="btn btn-primary">Editar</button></a>
-                <a href="excluir-clientes.php?id=<?=$cliente['id']?>"><button type="button" class="btn btn-danger">Excluir</button></a>
-              </td>
-            </tr>
+          <tr>
+            <td><?=$cliente['id']?></td>
+            <td><?=$cliente['nome']?></td>
+            <td><?=$cliente['empresa']?></td>
+            <td> 
+              <a href="editar-clientes.php?id=<?=$cliente['id']?>"><button type="button" class="btn btn-primary btn-sm"><i class="Tiny material-icons">create</i></button></button></a>
+              <a href="excluir-clientes.php?id=<?=$cliente['id']?>"><button type="button" class="btn btn-danger btn-sm"><i class="Tiny material-icons">delete_forever</i></button></button></a>
+            </td>
+          </tr>
           <?php endforeach; ?>
-      </tbody>
-  </section>
-
-
+        </tbody>
+      </section>
+      
 </main>
+
+
 
 

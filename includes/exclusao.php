@@ -4,14 +4,13 @@
   
   <form method="post">
     
-    <div class="form-group">
+    <div class="form-group mt-5">
       <p>Você deseja excluir o cliente <strong><?=$clienteSelecionado[0]['nome'];?></strong>?</p>
     </div>
 
     <div class="form-group">
       <a href="clientes.php"><button type="button" class="btn btn-success">Cancelar</button></a>
-      <button type="submit" name="excluir" class="btn btn-danger">Excluir</button>
-    </div>
+      <button type="submit" name="excluir" class="btn btn-danger">Excluir</div>
  
   </fomr> 
 

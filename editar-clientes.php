@@ -14,6 +14,11 @@ if(!isset($_GET['id']) or !is_numeric($_GET['id'])){
 
 $clienteSelecionado = ClienteDao::readCliente($_GET['id']);
 
+if(empty($clienteSelecionado)){
+    header('location: clientes.php?status=error');
+    exit;
+}
+
 
 if ($_SERVER["REQUEST_METHOD"] === 'POST'){
 
