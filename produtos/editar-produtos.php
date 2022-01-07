@@ -6,7 +6,6 @@ define('TITLE','Edição de Produto');
 
 use \App\Model\{Produto, ProdutoDao};
 
-
 if(!isset($_GET['id']) or !is_numeric($_GET['id'])){
     header('location: produtos.php?status=error');
     exit;
@@ -14,7 +13,7 @@ if(!isset($_GET['id']) or !is_numeric($_GET['id'])){
 
 $produtoSelecionado = ProdutoDao::readCliente($_GET['id']);
 
-if(empty($clienteSelecionado)){
+if(empty($produtoSelecionado)){
     header('location: produtos.php?status=error');
     exit;
 }
@@ -23,13 +22,13 @@ if(empty($clienteSelecionado)){
 if ($_SERVER["REQUEST_METHOD"] === 'POST'){
 
     if (empty($_POST['codigo']) || empty($_POST['nome']) || empty($_POST['preco']) || empty($_POST['descricao'])) {
-        header('location: cadastrar-produtos.php');
+        header('location: produtos.php?status=error');
         exit;
     }
 
     $produto = new Produto();
     $produto->setId($_GET['id']);
-    $produto->setCodigo($_GET['codigo']);
+    $produto->setCodigo($_POST['codigo']);
     $produto->setNome($_POST['nome']);
     $produto->setPreco($_POST['preco']);
     $produto->setDescricao($_POST['descricao']);

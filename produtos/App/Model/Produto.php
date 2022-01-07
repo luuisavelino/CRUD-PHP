@@ -14,11 +14,11 @@ class Produto {
         $this->id = $id;
     }
 
-    public function getcodigo() {
+    public function getCodigo() {
         return $this->codigo;
     }
 
-    public function setcodigo($codigo) {
+    public function setCodigo($codigo) {
         $this->codigo = $codigo;
     }
 

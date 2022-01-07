@@ -1,17 +1,17 @@
 <main>
 
   <section>
-    <a href="clientes.php">
+    <a href="produtos.php">
       <button class="btn btn-success">Voltar</button>
     </a>
   </section>
 
-  <h2 class="mt-3"><?=TITLE?></h2>
+  <h2 class="mt-3 text-light"><?=TITLE?></h2>
   
-  <form method="post">
+  <form method="post" class="text-light">
 
     <div class="form-group">  
-      <label>Codigo</label>
+      <label>Código</label>
       <input type="text" class="form-control" name="codigo" value="<?php echo isset($produtoSelecionado[0]['codigo']) ? $produtoSelecionado[0]['codigo'] : null; ?>">
     </div>
 
@@ -21,13 +21,13 @@
     </div>
 
     <div class="form-group">
-      <label>Preco</label>
+      <label>Preço</label>
       <input type="text" class="form-control" name="preco" value="<?php echo isset($produtoSelecionado[0]['preco']) ? $produtoSelecionado[0]['preco'] : null; ?>">
     </div>
 
     <div class="form-group">
-      <label>Descricao</label>
-      <input type="text" class="form-control" name="descricao" value="<?php echo isset($produtoSelecionado[0]['descricao']) ? $produtoSelecionado[0]['descricao'] : null; ?>">
+      <label>Descrição</label>
+      <textarea class="form-control" name="descricao" rows="4" value="<?php echo isset($produtoSelecionado[0]['descricao']) ? $produtoSelecionado[0]['descricao'] : null; ?>"></textarea>
     </div>
 
 

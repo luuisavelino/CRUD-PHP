@@ -1,8 +1,8 @@
 <main>
 
-  <h2 class="mt-3">Exclusão do Produto</h2>
+  <h2 class="mt-3 text-light">Exclusão do Produto</h2>
   
-  <form method="post">
+  <form method="post" class="text-light">
     
     <div class="form-group mt-5">
       <p>Você deseja excluir o produto <strong><?=$produtoSelecionado[0]['nome'];?></strong>?</p>

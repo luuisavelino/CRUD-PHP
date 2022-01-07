@@ -16,6 +16,7 @@ if ($_SERVER["REQUEST_METHOD"] === 'POST'){
         exit;
     }
 
+
     $produto = new Produto();
     $produto->setCodigo($_POST['codigo']);
     $produto->setNome($_POST['nome']);

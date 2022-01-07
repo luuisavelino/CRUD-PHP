@@ -1,8 +1,8 @@
 <main>
 
-  <h2 class="mt-3">Exclusão do Cliente</h2>
+  <h2 class="mt-3 text-light">Exclusão do Cliente</h2>
   
-  <form method="post">
+  <form method="post" class="text-light">
     
     <div class="form-group mt-5">
       <p>Você deseja excluir o cliente <strong><?=$clienteSelecionado[0]['nome'];?></strong>?</p>

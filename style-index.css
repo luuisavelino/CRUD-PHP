@@ -8,7 +8,8 @@ body{
     display: flex;
     justify-content: center;
     align-items: center;
-    background: #fff;
+    min-height: 80vh;
+    background: #031321;
     overflow: hidden;
 }
 ul{
@@ -43,7 +44,7 @@ ul li a{
     display: inline-block;
     padding: 6px 15px;
     text-decoration: none;
-    background: #2196f3;
+    background: #0f8b2a;
     color: #ffffff;
     text-transform: uppercase;
     letter-spacing: 2px;
@@ -57,7 +58,7 @@ ul:hover li a{
 ul li a:hover{
     transform: scale(1.5);
     z-index: 1000;
-    background: #ff3f81;
+    background: #0ad61b;
     opacity: 1;
 }
 ul li a:before{
