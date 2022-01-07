@@ -4,7 +4,7 @@ namespace App\Model;
 
 class Cliente {
 
-    public $id, $nome, $empresa;
+    public $id, $nome, $email,  $empresa;
 
     public function getId() {
         return $this->id;
@@ -22,6 +22,14 @@ class Cliente {
         $this->nome = $nome;
     }
 
+    public function getemail() {
+        return $this->email;
+    }
+
+    public function setemail($email) {
+        $this->email = $email;
+    }
+
     public function getEmpresa() {
         return $this->empresa;
     }
@@ -29,5 +37,4 @@ class Cliente {
     public function setEmpresa($empresa) {
         $this->empresa = $empresa;
     }
-    
 }

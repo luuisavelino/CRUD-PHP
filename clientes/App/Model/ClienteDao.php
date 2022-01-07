@@ -6,11 +6,12 @@ class ClienteDao {
 
     public function create(Cliente $p) {
 
-        $query = 'INSERT INTO clientes (nome, empresa) VALUES (?,?)';        
+        $query = 'INSERT INTO clientes (nome, email, empresa) VALUES (?,?,?)';        
         
         $stmt = Conexao::getConn()->prepare($query);
         $stmt->bindValue(1, $p->getNome());
-        $stmt->bindValue(2, $p->getEmpresa());
+        $stmt->bindValue(2, $p->getEmail());
+        $stmt->bindValue(3, $p->getEmpresa());
         $stmt->execute();
     }
 
@@ -50,12 +51,13 @@ class ClienteDao {
 
 
     public function update(Cliente $p) {
-        $query = 'UPDATE clientes SET nome = ?, empresa = ? WHERE id = ?';
+        $query = 'UPDATE clientes SET nome = ?, email = ?, empresa = ? WHERE id = ?';
 
         $stmt = Conexao::getConn()->prepare($query);
         $stmt->bindValue(1, $p->getNome());
-        $stmt->bindValue(2, $p->getEmpresa());
-        $stmt->bindValue(3, $p->getId());
+        $stmt->bindValue(2, $p->getEmail());
+        $stmt->bindValue(3, $p->getEmpresa());
+        $stmt->bindValue(4, $p->getId());
         
         $stmt->execute();
     }

@@ -2,8 +2,6 @@
 
 require_once 'vendor/autoload.php';
 
-define('TITLE','Edição de Cliente');
-
 use \App\Model\{Cliente, ClienteDao};
 
 

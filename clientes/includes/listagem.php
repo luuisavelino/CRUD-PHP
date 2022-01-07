@@ -19,7 +19,7 @@ if(isset($_GET['status'])){
 <main>
   <?=$mensagem?>
   <section>
-      <a href="cadastro-clientes.php">
+      <a href="cadastrar-clientes.php">
         <button class="btn btn-success">Novo cliente</button>
       </a>
   </section>
@@ -31,6 +31,7 @@ if(isset($_GET['status'])){
         <tr>
           <th>ID</th>
           <th>Nome</th>
+          <th>Email</th>
           <th>Empresa</th>
           <th>Ações</th>
         </tr> 
@@ -40,10 +41,11 @@ if(isset($_GET['status'])){
           <tr>
             <td><?=$cliente['id']?></td>
             <td><?=$cliente['nome']?></td>
+            <td><?=$cliente['email']?></td>
             <td><?=$cliente['empresa']?></td>
             <td> 
-              <a href="editar-clientes.php?id=<?=$cliente['id']?>"><button type="button" class="btn btn-primary btn-sm"><i class="Tiny material-icons">create</i></button></button></a>
-              <a href="excluir-clientes.php?id=<?=$cliente['id']?>"><button type="button" class="btn btn-danger btn-sm"><i class="Tiny material-icons">delete_forever</i></button></button></a>
+              <a href="editar-clientes.php?id=<?=$cliente['id']?>"><button type="button" class="btn btn-primary btn-sm">EDITAR</button></button></a>
+              <a href="excluir-clientes.php?id=<?=$cliente['id']?>"><button type="button" class="btn btn-danger btn-sm">EXCLUIR</button></button></a>
             </td>
           </tr>
           <?php endforeach; ?>
