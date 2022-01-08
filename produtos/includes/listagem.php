@@ -28,7 +28,12 @@ if(isset($_GET['status'])){
     <table id="tabela" class="table bg-light mt-4 rounded-lg">
       <thead>
         <tr>
-          <th>ID</th>
+          <th data-sortable="false">
+            <div>
+              <input class="check" type="checkbox" value="" id="checkIndex">
+              <label class="check"></label>
+            </div>
+          </th>
           <th>Codigo</th>
           <th>Nome</th>
           <th>Preço</th>
@@ -39,7 +44,12 @@ if(isset($_GET['status'])){
       <tbody>
         <?php foreach($produtos as $produto): ?>
         <tr>
-          <td><?=$produto['id']?></td>
+          <td>
+            <div>
+              <input class="check" type="checkbox" value="" id="check">
+              <label class="check"></label>
+            </div>
+          </td>
           <td><?=$produto['codigo']?></td>
           <td><?=$produto['nome']?></td>
           <td><?=$produto['preco']?></td>
@@ -61,7 +71,28 @@ if(isset($_GET['status'])){
       </tbody>
     </table>
   </section>
+
+  <!-- Realiza a seleção de todos os checkbox -->
+  <script>
+
+    let checkIndex = document.querySelector('#checkIndex')
+    
+    checkIndex.addEventListener('click', () => {
       
+      if (checkIndex.checked){
+        for(let current of document.querySelectorAll('#check')) {
+          current.checked = true
+        }
+      } else {
+        for(let current of document.querySelectorAll('#check')) {
+          current.checked = false
+        }
+      }
+    })
+
+  </script>
+
+
   <!-- Realiza a ordenação e paginação da tabela-->
   <script>
     //https://github.com/Mobius1/Vanilla-DataTables

@@ -1,5 +1,6 @@
 <?php
 
+
 require_once 'vendor/autoload.php';
 
 define('TITLE','Cadastro de Cliente');
@@ -12,7 +13,13 @@ if ($_SERVER["REQUEST_METHOD"] === 'POST'){
 
 
     if (empty($_POST['nome']) || empty($_POST['email']) ||empty($_POST['empresa'])) {
-        header('location: cadastro-clientes.php');
+        header('location: clientes.php?status=error');
+        exit;
+    }
+
+    $email = $_POST['email'];
+    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        header('location: clientes.php?status=error');
         exit;
     }
 

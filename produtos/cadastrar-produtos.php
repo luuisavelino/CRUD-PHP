@@ -12,10 +12,9 @@ if ($_SERVER["REQUEST_METHOD"] === 'POST'){
 
 
     if (empty($_POST['codigo']) || empty($_POST['nome']) || empty($_POST['preco']) || empty($_POST['descricao'])) {
-        header('location: cadastrar-produtos.php');
+        header('location: produtos.php?status=error');
         exit;
     }
-
 
     $produto = new Produto();
     $produto->setCodigo($_POST['codigo']);

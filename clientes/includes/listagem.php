@@ -27,7 +27,12 @@ if(isset($_GET['status'])){
     <table id="tabela" class="table bg-light mt-4 rounded-lg">
       <thead>
         <tr>
-          <th>ID</th>
+          <th data-sortable="false">
+            <div>
+              <input class="check" type="checkbox" value="" id="checkIndex">
+              <label class="check"></label>
+            </div>
+          </th>
           <th>Nome</th>
           <th>Email</th>
           <th>Empresa</th>
@@ -37,7 +42,12 @@ if(isset($_GET['status'])){
       <tbody>
         <?php foreach($clientes as $cliente): ?>
         <tr>
-          <td><?=$cliente['id']?></td>
+          <td>
+            <div>
+              <input class="check" type="checkbox" value="" id="check">
+              <label class="check"></label>
+            </div>
+          </td>
           <td><?=$cliente['nome']?></td>
           <td><?=$cliente['email']?></td>
           <td><?=$cliente['empresa']?></td>
@@ -59,8 +69,33 @@ if(isset($_GET['status'])){
     </table>
   </section>
 
-  <!-- Realiza a ordenação e paginação da tabela-->
+
+
+
   <script>
+
+
+    //Realiza a seleção de todos os checkbox
+    let checkBoxes = document.querySelectorAll('#check')
+    let checkIndex = document.querySelector('#checkIndex')
+
+
+    checkIndex.addEventListener('click', () => {
+      
+      if (checkIndex.checked){
+        for(let current of document.querySelectorAll('#check')) {
+          current.checked = true
+        }
+      } else {
+        for(let current of document.querySelectorAll('#check')) {
+          current.checked = false
+        }
+      }
+    })
+
+    
+
+    //Realiza a ordenação e paginação da tabela
     //https://github.com/Mobius1/Vanilla-DataTables
 
     var table = document.querySelector("#tabela");
@@ -70,8 +105,8 @@ if(isset($_GET['status'])){
       labels: {
       placeholder: "Busca de produtos...",
       perPage: "{select}",
-      noRows: "Sem ",
-      info: "{rows} resultados\n. Apresentando clientes de {start} à {end} (Página {page} de {pages})",
+      noRows: "Sem clientes",
+      info: "{id} resultados. Apresentando clientes de {start} à {end} (Página {page} de {pages})",
       }
         
     });
