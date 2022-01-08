@@ -27,7 +27,7 @@
 
     <div class="form-group">
       <label>Descrição</label>
-      <textarea class="form-control" name="descricao" rows="4" value="<?php echo isset($produtoSelecionado[0]['descricao']) ? $produtoSelecionado[0]['descricao'] : null; ?>"></textarea>
+      <textarea class="form-control" name="descricao" rows="4"><?php echo isset($produtoSelecionado[0]['descricao']) ? $produtoSelecionado[0]['descricao'] : null; ?></textarea>
     </div>
 
 

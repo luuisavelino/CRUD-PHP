@@ -38,9 +38,7 @@ if ($_SERVER["REQUEST_METHOD"] === 'POST'){
 
     header('location: produtos.php?status=success');
     exit;
-
 }
-
 
 include __DIR__.'/includes/header.php';
 include __DIR__.'/includes/formulario.php';
