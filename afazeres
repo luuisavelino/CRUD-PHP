@@ -5,9 +5,7 @@ Geral
 Frontend	
   Colocar por sessão ?status=success	
   Criar um delete e upgrade para mais de um usuário	
-  Realizar autenticação de usuário	
   Aprimorar index.php	
 
 Backend	
   Juntar arquivos iguais do Produtos e do Clientes	
-  Realizar tratamento de entrada de email

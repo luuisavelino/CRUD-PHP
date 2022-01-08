@@ -52,6 +52,19 @@ ul li a{
     transition: 0.4s;
     z-index: 1;
 }
+ul li a.red{
+    position: relative;
+    display: inline-block;
+    padding: 6px 15px;
+    text-decoration: none;
+    background: #8b0f49;
+    color: #ffffff;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    overflow: hidden;
+    transition: 0.4s;
+    z-index: 1;
+}
 ul:hover li a{
     opacity: 0;
 }
@@ -61,6 +74,14 @@ ul li a:hover{
     background: #0ad61b;
     opacity: 1;
 }
+
+ul li a.red:hover{
+    transform: scale(1.5);
+    z-index: 1000;
+    background: #ec16b7;
+    opacity: 1;
+}
+
 ul li a:before{
     content: '';
     position: absolute;

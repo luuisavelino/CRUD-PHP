@@ -19,7 +19,7 @@ if(isset($_GET['status'])){
 <main>
   <?=$mensagem?>
   <section class="mb-4">
-      <a href="../index.html"><button class="btn btn-success">Home</button></a>
+      <a href="../index.php"><button class="btn btn-success">Home</button></a>
       <a href="cadastrar-clientes.php"><button class="btn btn-success">Novo cliente</button></a>
   </section>
 
@@ -105,7 +105,7 @@ if(isset($_GET['status'])){
       labels: {
       placeholder: "Busca de produtos...",
       perPage: "{select}",
-      noRows: "Sem clientes",
+      noRows: "Nenhum cliente encontrado",
       info: "{id} resultados. Apresentando clientes de {start} à {end} (Página {page} de {pages})",
       }
         

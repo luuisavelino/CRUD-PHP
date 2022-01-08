@@ -2,7 +2,7 @@
 
 
 CREATE DATABASE challenge;
-
+USE challenge;
 
 
 CREATE TABLE `login` (
