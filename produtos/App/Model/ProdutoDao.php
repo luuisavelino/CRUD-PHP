@@ -2,6 +2,8 @@
 
 namespace App\Model;
 
+//require __DIR__.'../../../clientes/App/Model/Conexao.php';
+
 class ProdutoDao {
 
     public function create(Produto $p) {

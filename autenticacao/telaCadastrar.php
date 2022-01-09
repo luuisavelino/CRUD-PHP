@@ -32,9 +32,8 @@ session_start();
 
             <div id="formContent">
 
-            <a href="./telaLogin.php"><h2 class="active"> Sign In </h2></a>
-            <a href="./telaCadastrar.php"><h2 class="inactive underlineHover">Sign Up </h2></a>
-        
+            <a href="./telaLogin.php"><h2 class="inactive underlineHover"> Sign In </h2></a>
+            <a href="./telaCadastrar.php"><h2 class="active">Sign Up </h2></a>
         
             <form action="./login.php" method="POST">
                 

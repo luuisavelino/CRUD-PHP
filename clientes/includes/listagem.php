@@ -98,15 +98,15 @@ if(isset($_GET['status'])){
     //Realiza a ordenação e paginação da tabela
     //https://github.com/Mobius1/Vanilla-DataTables
 
-    var table = document.querySelector("#tabela");
-    var dataTable = new DataTable(table,{
+    let table = document.querySelector("#tabela");
+    let dataTable = new DataTable(table,{
       perPage:5,   
 
       labels: {
       placeholder: "Busca de produtos...",
       perPage: "{select}",
       noRows: "Nenhum cliente encontrado",
-      info: "{id} resultados. Apresentando clientes de {start} à {end} (Página {page} de {pages})",
+      info: "{rows} resultados. Apresentando clientes de {start} à {end} (Página {page} de {pages})",
       }
         
     });

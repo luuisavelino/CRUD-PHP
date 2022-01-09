@@ -2,6 +2,8 @@
 
 namespace App\Model;
 
+
+
 class ClienteDao {
 
     public function create(Cliente $p) {
