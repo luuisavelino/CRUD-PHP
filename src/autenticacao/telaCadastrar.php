@@ -16,30 +16,18 @@ session_start();
 
 
         <div class="wrapper fadeInDown">
-            <div>
-                <?php
-                    if(isset($_SESSION['nao_autenticado'])):
-                ?>
-                <div class="notification is-danger">
-                    <p>ERRO: Usuário ou senha inválidos.</p>
-                </div>
-                <?php
-                    endif;
-                    unset($_SESSION['nao_autenticado']);
-                ?>
-            </div>
-
-
+ 
             <div id="formContent">
 
             <a href="./telaLogin.php"><h2 class="inactive underlineHover"> Sign In </h2></a>
-            <a href="./telaCadastrar.php"><h2 class="active">Sign Up </h2></a>
+            <a href="./cadastrar-usuario.php"><h2 class="active">Sign Up </h2></a>
         
-            <form action="./login.php" method="POST">
+            <form action="./cadastrar-usuario.php" method="POST">
                 
-                <input name="usuario" name="text" type="text" class="fadeIn second"  placeholder="login">
-                <input name="senha" type="text" class="fadeIn third" placeholder="password">
-                <input type="submit" class="fadeIn fourth" value="Log In">
+                <input name="usuario" name="text" type="text" class="fadeIn second"  placeholder="Insira um nome de usuário">
+                <input name="senha" type="text" class="fadeIn third" placeholder="Digite uma senha">
+                <input name="senhaConfirmada" type="text" class="fadeIn third" placeholder="Repita a senha">
+                <input type="submit" class="fadeIn fourth" value="Register">
                 
             </form>
  
