@@ -67,11 +67,11 @@ class ProdutoDao {
         $stmt->execute();
     }
 
-    public function delete($id) {
-        $query = 'DELETE FROM produtos WHERE id = ?';
+    public function delete($ids) {
+
+        $query = 'DELETE FROM produtos WHERE id IN ('.implode(',', $ids).')';
 
         $stmt = Conexao::getConn()->prepare($query);
-        $stmt->bindValue(1, $id);
         $stmt->execute();
     }
 }

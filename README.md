@@ -8,10 +8,6 @@ Geral
 Frontend	
   Colocar por sessão ?status=success
 
-Backend
-  Criar um delete e upgrade para mais de um usuário	
-
-
 
 
 COMANDOS A SEREM DADOS NO BANCO DE DADOS

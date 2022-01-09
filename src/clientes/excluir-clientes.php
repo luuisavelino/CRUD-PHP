@@ -17,7 +17,7 @@ $clienteSelecionado = $ClienteDao->readCliente($_GET['id']);
 if (isset($_POST['excluir'])){
 
     $ClienteDao = new ClienteDao();
-    $ClienteDao->delete($_GET['id']);
+    $ClienteDao->delete([$_GET['id']]);
 
     header('location: clientes.php?status=success');
     exit;
