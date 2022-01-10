@@ -37,7 +37,7 @@ session_start();
             <form action="./login.php" method="POST">
                 
                 <input name="usuario" type="text" class="fadeIn second"  placeholder="usuário">
-                <input name="senha" type="text" class="fadeIn third" placeholder="senha">
+                <input name="senha" type="password" required="required" class="fadeIn third" placeholder="senha">
                 <input type="submit" class="fadeIn fourth" value="Log In">
                 
             </form>

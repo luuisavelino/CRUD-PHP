@@ -25,8 +25,8 @@ session_start();
             <form action="./cadastrar-usuario.php" method="POST">
                 
                 <input name="usuario" name="text" type="text" class="fadeIn second"  placeholder="Insira um nome de usuário">
-                <input name="senha" type="text" class="fadeIn third" placeholder="Digite uma senha">
-                <input name="senhaConfirmada" type="text" class="fadeIn third" placeholder="Repita a senha">
+                <input name="senha" type="password" class="fadeIn third" placeholder="Digite uma senha">
+                <input name="senhaConfirmada" type="password" class="fadeIn third" placeholder="Repita a senha">
                 <input type="submit" class="fadeIn fourth" value="Register">
                 
             </form>
