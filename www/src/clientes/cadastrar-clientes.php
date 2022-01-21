@@ -10,7 +10,7 @@ define('TITLE','Cadastro de Cliente');
 if ($_SERVER["REQUEST_METHOD"] === 'POST'){
 
 
-    if (empty($_POST['nome']) || empty($_POST['email']) ||empty($_POST['empresa'])) {
+    if (empty($_POST['nome']) || empty($_POST['senha']) || empty($_POST['email']) ||empty($_POST['empresa'])) {
         header('location: clientes.php?status=error');
         exit;
     }
@@ -23,6 +23,7 @@ if ($_SERVER["REQUEST_METHOD"] === 'POST'){
 
     $cliente = new Cliente();
     $cliente->setNome($_POST['nome']);
+    $cliente->setSenha($_POST['senha']);
     $cliente->setEmail($_POST['email']);
     $cliente->setEmpresa($_POST['empresa']);
 

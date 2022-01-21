@@ -15,6 +15,11 @@
     </div>
 
     <div class="form-group">
+      <label>Senha</label>
+      <input type="password" class="form-control" name="senha" value="********">
+    </div>
+
+    <div class="form-group">
       <label>Email</label>
       <input type="text" class="form-control" name="email" value="<?php echo isset($clienteSelecionado[0]['email']) ? $clienteSelecionado[0]['email'] : null; ?>">
     </div>

@@ -22,6 +22,8 @@ if(empty($clienteSelecionado)){
 }
 
 
+
+
 if ($_SERVER["REQUEST_METHOD"] === 'POST'){
 
     if (empty($_POST['nome']) || empty($_POST['email']) || empty($_POST['empresa'])) {
@@ -40,6 +42,9 @@ if ($_SERVER["REQUEST_METHOD"] === 'POST'){
     $cliente = new Cliente();
     $cliente->setId($_GET['id']);
     $cliente->setNome($_POST['nome']);
+    if ("********" != $_POST['senha']) {
+        $cliente->setSenha(md5($_POST['senha']));
+    }
     $cliente->setEmail($_POST['email']);
     $cliente->setEmpresa($_POST['empresa']);
 
@@ -48,7 +53,6 @@ if ($_SERVER["REQUEST_METHOD"] === 'POST'){
 
     header('location: clientes.php?status=success');
     exit;
-
 }
 
 

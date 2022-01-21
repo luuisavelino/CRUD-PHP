@@ -35,6 +35,7 @@ if(isset($_GET['status'])){
               </div>
             </th>
             <th>Nome</th>
+            <th>Senha</th>
             <th>Email</th>
             <th>Empresa</th>
             <th data-sortable="false">Ações</th>
@@ -48,6 +49,7 @@ if(isset($_GET['status'])){
                 <label class="check"></label>
             </td>
             <td><?=$cliente['nome']?></td>
+            <td>********</td>
             <td><?=$cliente['email']?></td>
             <td><?=$cliente['empresa']?></td>
             <td> 

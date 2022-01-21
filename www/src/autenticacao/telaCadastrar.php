@@ -27,6 +27,8 @@ session_start();
                 <input name="usuario" name="text" type="text" class="fadeIn second"  placeholder="Insira um nome de usuário">
                 <input name="senha" type="password" class="fadeIn third" placeholder="Digite uma senha">
                 <input name="senhaConfirmada" type="password" class="fadeIn third" placeholder="Repita a senha">
+                <input name="email" name="text" type="text" class="fadeIn second"  placeholder="Insira seu email">
+                <input name="empresa" name="text" type="text" class="fadeIn second"  placeholder="Insira o nome da sua empresa">
                 <input type="submit" class="fadeIn fourth" value="Register">
                 
             </form>

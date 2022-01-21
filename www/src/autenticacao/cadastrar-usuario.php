@@ -2,35 +2,48 @@
 
 require_once '../../vendor/autoload.php';
 
-use \App\Domain\Model\Usuario;
-use \App\Infrastructure\Repository\UsuarioDao;
-
-
-
-
+use \App\Domain\Model\Cliente;
+use \App\Infrastructure\Repository\ClienteDao;
 
 
 if ($_SERVER["REQUEST_METHOD"] === 'POST'){
 
 
-    if (empty($_POST['usuario']) || empty($_POST['senha'])) {
-        header('location: cadastrar-usuario.php?status=error');
+    if (empty($_POST['usuario']) || empty($_POST['senha']) || empty($_POST['email']) ||empty($_POST['empresa'])) {
+        header('location: telaCadastrar.php?status=error');
         exit;
     }
 
     if ($_POST['senha'] != $_POST['senhaConfirmada']) {
-        header('location: cadastrar-usuario.php?status=error');
+        header('location: telaCadastrar.php?status=error');
         exit;
     }
 
-    $usuario = new Usuario();
-    $usuario->setNome($_POST['usuario']);
-    $usuario->setSenha($_POST['senha']);
+    $email = $_POST['email'];
+    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        header('location: telaCadastrar.php?status=error');
+        exit;
+    }
 
-    $UsuarioDao = new UsuarioDao();
-    $UsuarioDao->create($usuario);
+    $verificacaoDao = new ClienteDao();
+    $row = $verificacaoDao->confirmaUsuario($_POST['usuario']);
 
-    header('location: ../../index.php?status=success');
+    if($row != 0) {
+        header('Location: telaCadastrar.php?status=error');
+        exit;
+    }
+
+
+    $cliente = new Cliente();
+    $cliente->setNome($_POST['usuario']);
+    $cliente->setSenha($_POST['senha']);
+    $cliente->setEmail($_POST['email']);
+    $cliente->setEmpresa($_POST['empresa']);
+
+    $ClienteDao = new ClienteDao();
+    $ClienteDao->create($cliente);
+
+    header('location: ./telaLogin.php');
     exit;
 
 }

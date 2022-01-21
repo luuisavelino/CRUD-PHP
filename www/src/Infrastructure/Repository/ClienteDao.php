@@ -9,12 +9,13 @@ class ClienteDao {
 
     public function create(Cliente $p) {
 
-        $query = 'INSERT INTO clientes (nome, email, empresa) VALUES (?,?,?)';        
+        $query = 'INSERT INTO clientes (nome, senha, email, empresa) VALUES (?,?,?,?)';        
         
         $stmt = Conexao::getConn()->prepare($query);
         $stmt->bindValue(1, $p->getNome());
-        $stmt->bindValue(2, $p->getEmail());
-        $stmt->bindValue(3, $p->getEmpresa());
+        $stmt->bindValue(2, md5($p->getSenha()));
+        $stmt->bindValue(3, $p->getEmail());
+        $stmt->bindValue(4, $p->getEmpresa());
         $stmt->execute();
     }
 
@@ -54,13 +55,14 @@ class ClienteDao {
 
 
     public function update(Cliente $p) {
-        $query = 'UPDATE clientes SET nome = ?, email = ?, empresa = ? WHERE id = ?';
+        $query = 'UPDATE clientes SET nome = ?, senha = ? , email = ?, empresa = ? WHERE id = ?';
 
         $stmt = Conexao::getConn()->prepare($query);
         $stmt->bindValue(1, $p->getNome());
-        $stmt->bindValue(2, $p->getEmail());
-        $stmt->bindValue(3, $p->getEmpresa());
-        $stmt->bindValue(4, $p->getId());
+        $stmt->bindValue(2, $p->getSenha());
+        $stmt->bindValue(3, $p->getEmail());
+        $stmt->bindValue(4, $p->getEmpresa());
+        $stmt->bindValue(5, $p->getId());
         $stmt->execute();
     }
 
@@ -74,4 +76,19 @@ class ClienteDao {
         $stmt->execute();
     
     }
+
+
+    public function confirmaUsuario($nome) {
+  
+        $query = "SELECT nome FROM clientes WHERE nome = '{$nome}';";      
+        
+        $stmt = Conexao::getConn()->prepare($query);
+        $stmt->execute();
+
+        return $stmt->rowCount();
+
+    }
+
+
+
 }
