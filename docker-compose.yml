@@ -13,10 +13,7 @@ db:
   image: mysql:5.7
   container_name: mysql
   volumes:
-    - mysql-storage:/var/lib/mysql
+    - /var/lib/mysql
   environment:
     - MYSQL_ROOT_PASSWORD=admin
     - MYSQL_DATABASE=challenge
-
-volumes:
-  mysql-storage:
