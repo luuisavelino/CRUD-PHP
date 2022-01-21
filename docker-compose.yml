@@ -1,7 +1,5 @@
-
-app:
+php:
   build: .
-  container_name: app
   ports: 
     - "80:80"
     - "443:443"
