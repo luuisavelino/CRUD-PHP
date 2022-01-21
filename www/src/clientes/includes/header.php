@@ -21,13 +21,13 @@
       include('../autenticacao/verifica_login.php');
     ?>
 
-    <title>CLIENTES</title>
+    <title>USUARIOS</title>
   
   </head>
   <body class="text-dark">
 
     <div class="container"> <!-- objetos centralizado -->
       <div class="jumbotron light">
-        <h1>PÁGINA DE CLIENTES</h1>
-        <p>Esta é a página de clientes do challenge.</p>
+        <h1>PÁGINA DE USUARIOS</h1>
+        <p>Esta é a página de usuarios do challenge.</p>
       </div>

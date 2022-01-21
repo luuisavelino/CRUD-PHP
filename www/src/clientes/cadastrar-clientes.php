@@ -2,15 +2,15 @@
 
 require_once '../../vendor/autoload.php';
 
-use \App\Domain\Model\Cliente;
-use \App\Infrastructure\Repository\ClienteDao;
+use \App\Domain\Model\Usuario;
+use \App\Infrastructure\Repository\UsuarioDao;
 
 define('TITLE','Cadastro de Cliente');
 
 if ($_SERVER["REQUEST_METHOD"] === 'POST'){
 
 
-    if (empty($_POST['nome']) || empty($_POST['senha']) || empty($_POST['email']) ||empty($_POST['empresa'])) {
+    if (empty($_POST['usuario']) || empty($_POST['senha']) || empty($_POST['email']) ||empty($_POST['empresa'])) {
         header('location: clientes.php?status=error');
         exit;
     }
@@ -21,18 +21,17 @@ if ($_SERVER["REQUEST_METHOD"] === 'POST'){
         exit;
     }
 
-    $cliente = new Cliente();
-    $cliente->setNome($_POST['nome']);
-    $cliente->setSenha($_POST['senha']);
-    $cliente->setEmail($_POST['email']);
-    $cliente->setEmpresa($_POST['empresa']);
+    $usuario = new Usuario();
+    $usuario->setUsuario($_POST['usuario']);
+    $usuario->setSenha($_POST['senha']);
+    $usuario->setEmail($_POST['email']);
+    $usuario->setEmpresa($_POST['empresa']);
 
-    $ClienteDao = new ClienteDao();
-    $ClienteDao->create($cliente);
+    $UsuarioDao = new UsuarioDao();
+    $UsuarioDao->create($usuario);
 
     header('location: clientes.php?status=success');
     exit;
-
 }
 
 

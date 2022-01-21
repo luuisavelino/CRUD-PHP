@@ -2,23 +2,23 @@
 
 require_once '../../vendor/autoload.php';
 
-use \App\Infrastructure\Repository\ClienteDao;
+use \App\Infrastructure\Repository\UsuarioDao;
 
-$ClienteDao = new ClienteDao();
-$clientes = $ClienteDao->read();
+$UsuarioDao = new UsuarioDao();
+$usuarios = $UsuarioDao->read();
 
-$clientesID = filter_input_array(INPUT_POST, FILTER_DEFAULT);
+$usuariosID = filter_input_array(INPUT_POST, FILTER_DEFAULT);
 
-if (!empty($clientesID['excluirCliente'])) {
-    if(isset($clientesID['excluir'])) {
+if (!empty($usuariosID['excluirUsuario'])) {
+    if(isset($usuariosID['excluir'])) {
         $i=0;
-        foreach($clientesID['excluir'] as $id => $cliente) {
+        foreach($usuariosID['excluir'] as $id => $usuario) {
             $ids[$i] = $id;
             $i++;
         }
 
-        $ClienteDao = new ClienteDao();
-        $ClienteDao->delete($ids);
+        $UsuarioDao = new UsuarioDao();
+        $UsuarioDao->delete($ids);
     
         header('location: clientes.php?status=success');
         exit;

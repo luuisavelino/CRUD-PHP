@@ -2,31 +2,28 @@
 
 require_once '../../vendor/autoload.php';
 
-use \App\Domain\Model\Cliente;
-use \App\Infrastructure\Repository\ClienteDao;
+use \App\Domain\Model\Usuario;
+use \App\Infrastructure\Repository\UsuarioDao;
 
 
-define('TITLE','Edição de Cliente');
+define('TITLE','Edição de Usuario');
 
 if(!isset($_GET['id']) or !is_numeric($_GET['id'])){
     header('location: clientes.php?status=error');
     exit;
 }
 
-$ClienteDao = new ClienteDao();
-$clienteSelecionado = $ClienteDao->readCliente($_GET['id']);
+$UsuarioDao = new UsuarioDao();
+$usuarioSelecionado = $UsuarioDao->readUsuario($_GET['id']);
 
-if(empty($clienteSelecionado)){
+if(empty($usuarioSelecionado)){
     header('location: clientes.php?status=error');
     exit;
 }
 
-
-
-
 if ($_SERVER["REQUEST_METHOD"] === 'POST'){
 
-    if (empty($_POST['nome']) || empty($_POST['email']) || empty($_POST['empresa'])) {
+    if (empty($_POST['usuario']) || empty($_POST['email']) || empty($_POST['empresa'])) {
         header('location: clientes.php?status=error');
         exit;
     }
@@ -38,18 +35,17 @@ if ($_SERVER["REQUEST_METHOD"] === 'POST'){
         exit;
     }
 
-
-    $cliente = new Cliente();
-    $cliente->setId($_GET['id']);
-    $cliente->setNome($_POST['nome']);
+    $usuario = new Usuario();
+    $usuario->setId($_GET['id']);
+    $usuario->setUsuario($_POST['usuario']);
     if ("********" != $_POST['senha']) {
-        $cliente->setSenha(md5($_POST['senha']));
+        $usuario->setSenha(md5($_POST['senha']));
     }
-    $cliente->setEmail($_POST['email']);
-    $cliente->setEmpresa($_POST['empresa']);
+    $usuario->setEmail($_POST['email']);
+    $usuario->setEmpresa($_POST['empresa']);
 
-    $ClienteDao = new ClienteDao();
-    $ClienteDao->update($cliente);
+    $UsuarioDao = new UsuarioDao();
+    $UsuarioDao->update($usuario);
 
     header('location: clientes.php?status=success');
     exit;

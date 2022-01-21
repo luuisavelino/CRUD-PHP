@@ -2,8 +2,8 @@
 
 require_once '../../vendor/autoload.php';
 
-use \App\Domain\Model\Cliente;
-use \App\Infrastructure\Repository\ClienteDao;
+use \App\Domain\Model\Usuario;
+use \App\Infrastructure\Repository\UsuarioDao;
 
 
 if ($_SERVER["REQUEST_METHOD"] === 'POST'){
@@ -25,7 +25,7 @@ if ($_SERVER["REQUEST_METHOD"] === 'POST'){
         exit;
     }
 
-    $verificacaoDao = new ClienteDao();
+    $verificacaoDao = new UsuarioDao();
     $row = $verificacaoDao->confirmaUsuario($_POST['usuario']);
 
     if($row != 0) {
@@ -34,14 +34,14 @@ if ($_SERVER["REQUEST_METHOD"] === 'POST'){
     }
 
 
-    $cliente = new Cliente();
-    $cliente->setNome($_POST['usuario']);
-    $cliente->setSenha($_POST['senha']);
-    $cliente->setEmail($_POST['email']);
-    $cliente->setEmpresa($_POST['empresa']);
+    $usuario = new Usuario();
+    $usuario->setUsuario($_POST['usuario']);
+    $usuario->setSenha($_POST['senha']);
+    $usuario->setEmail($_POST['email']);
+    $usuario->setEmpresa($_POST['empresa']);
 
-    $ClienteDao = new ClienteDao();
-    $ClienteDao->create($cliente);
+    $UsuarioDao = new UsuarioDao();
+    $UsuarioDao->create($usuario);
 
     header('location: ./telaLogin.php');
     exit;
