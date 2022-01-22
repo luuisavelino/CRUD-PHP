@@ -9,7 +9,9 @@ use \App\Infrastructure\Repository\UsuarioDao;
 define('TITLE','Edição de Usuario');
 
 if(!isset($_GET['id']) or !is_numeric($_GET['id'])){
-    header('location: usuarios.php?status=error');
+    $_SESSION['status'] = 'error';
+    $_SESSION['typeError'] = 'ID de usuário inválido';
+    header('location: usuarios.php');
     exit;
 }
 
@@ -17,20 +19,26 @@ $UsuarioDao = new UsuarioDao();
 $usuarioSelecionado = $UsuarioDao->readUsuario($_GET['id']);
 
 if(empty($usuarioSelecionado)){
-    header('location: usuarios.php?status=error');
+    $_SESSION['status'] = 'error';
+    $_SESSION['typeError'] = 'Nenhum usuário selecionado';
+    header('location: usuarios.php');
     exit;
 }
 
 if ($_SERVER["REQUEST_METHOD"] === 'POST'){
 
     if (empty($_POST['usuario']) || empty($_POST['senha']) || empty($_POST['email']) || empty($_POST['empresa'])) {
-        header('location: usuarios.php?status=error');
+        $_SESSION['status'] = 'error';
+        $_SESSION['typeError'] = 'Campos não preenchidos';
+        header('location: usuarios.php');
         exit;
     }
 
     $email = $_POST['email'];
     if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-        header('location: usuarios.php?status=error');
+        $_SESSION['status'] = 'error';
+        $_SESSION['typeError'] = 'Email inválido';
+        header('location: usuarios.php');
         exit;
     }
 
@@ -56,7 +64,9 @@ if ($_SERVER["REQUEST_METHOD"] === 'POST'){
     $UsuarioDao = new UsuarioDao();
     $UsuarioDao->update($usuario);
 
-    header('location: usuarios.php?status=success');
+    $_SESSION['status'] = 'success';
+    $_SESSION['typeSuccess'] = 'Cliente editado';
+    header('location: usuarios.php');
     exit;
 }
 

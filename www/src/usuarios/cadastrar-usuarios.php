@@ -12,13 +12,17 @@ if ($_SERVER["REQUEST_METHOD"] === 'POST'){
 
 
     if (empty($_POST['usuario']) || empty($_POST['senha']) || empty($_POST['email']) || empty($_POST['empresa']) || empty($_POST['permissao'])) {
-        header('location: usuarios.php?status=error');
+        $_SESSION['status'] = 'error';
+        $_SESSION['typeError'] = 'Campos não preenchidos';
+        header('location: usuarios.php');
         exit;
     }
 
     $email = $_POST['email'];
     if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-        header('location: usuarios.php?status=error');
+        $_SESSION['status'] = 'error';
+        $_SESSION['typeError'] = 'Email inválido';
+        header('location: usuarios.php');
         exit;
     }
 
@@ -32,7 +36,9 @@ if ($_SERVER["REQUEST_METHOD"] === 'POST'){
     $UsuarioDao = new UsuarioDao();
     $UsuarioDao->create($usuario);
 
-    header('location: usuarios.php?status=success');
+    $_SESSION['status'] = 'success';
+    $_SESSION['typeSuccess'] = 'Cliente cadastrado';
+    header('location: usuarios.php');
     exit;
 }
 

@@ -1,14 +1,14 @@
 <?php
 
 $mensagem = '';
-if(isset($_GET['status'])){
-  switch ($_GET['status']) {
+if(isset($_SESSION['status'])){
+  switch ($_SESSION['status']) {
     case 'success':
-      $mensagem = '<div class="alert alert-success">Ação executada com sucesso!</div>';
+      $mensagem = '<div class="alert alert-success">Ação executada com sucesso! '.$_SESSION['typeSuccess'].'.</div>';
       break;
 
     case 'error':
-      $mensagem = '<div class="alert alert-danger">Ação não executada!</div>';
+      $mensagem = '<div class="alert alert-danger">'.$_SESSION['typeError'].'. Ação não executada!</div>';
       break;
   }
 }

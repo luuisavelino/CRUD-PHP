@@ -21,11 +21,16 @@ if (!empty($usuariosID['excluirUsuario'])) {
         $UsuarioDao = new UsuarioDao();
         $UsuarioDao->delete($ids);
     
-        header('location: usuarios.php?status=success');
+        $_SESSION['status'] = 'success';
+        $_SESSION['typeSuccess'] = 'Clientes excluídos';
+        header('location: usuarios.php');
         exit;
 
     } else {
-        header('location: usuarios.php?status=error');
+        $_SESSION['status'] = 'error';
+        $_SESSION['typeError'] = 'Nenhum usuário selecionado';
+        header('location: usuarios.php');
+        exit;
     }
 }
 
