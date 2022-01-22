@@ -38,6 +38,7 @@ if(isset($_GET['status'])){
             <th>Senha</th>
             <th>Email</th>
             <th>Empresa</th>
+            <th>Permissao</th>
             <th data-sortable="false">Ações</th>
           </tr> 
         </thead>
@@ -52,6 +53,8 @@ if(isset($_GET['status'])){
             <td>********</td>
             <td><?=$usuario['email']?></td>
             <td><?=$usuario['empresa']?></td>
+            <td><?=$usuario['permissao']?></td>
+            
             <td> 
               <a href="editar-usuarios.php?id=<?=$usuario['id']?>"><button type="button" class="btn btn-primary btn-sm">
                   <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil" viewBox="0 0 16 16">

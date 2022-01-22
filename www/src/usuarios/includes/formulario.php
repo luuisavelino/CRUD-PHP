@@ -29,6 +29,16 @@
       <input type="text" class="form-control" name="empresa" value="<?php echo isset($usuarioSelecionado[0]['empresa']) ? $usuarioSelecionado[0]['empresa'] : null; ?>">
     </div>
 
+    <div class="mt-5 form-group container d-flex justify-content-center align-items-center">
+      <select name="permissao" id="permissao">
+        <option value="">Selecione</option>
+        <option value="superadmin">Superadmin</option>
+        <option value="admin">Admin</option>
+        <option value="usuario">Usuario</option>
+      </select>
+    </div>
+
+
     <div class="form-group">
       <button type="submit" class="btn btn-success">Enviar</button>
     </div>

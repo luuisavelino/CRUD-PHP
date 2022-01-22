@@ -10,7 +10,6 @@ Este é um projeto que foi desenvolvido para o Challenge da Made4it
 
 ## COMANDOS DO BANCO DE DADOS 
 
-    CREATE DATABASE challenge;
     USE challenge;
 
     CREATE TABLE `usuarios` (
@@ -19,6 +18,7 @@ Este é um projeto que foi desenvolvido para o Challenge da Made4it
     `senha` VARCHAR(32) NOT NULL COLLATE 'utf8_general_ci',
     `email` VARCHAR(255) NOT NULL COLLATE 'utf8_general_ci',
     `empresa` VARCHAR(255) NOT NULL COLLATE 'utf8_general_ci',
+    `permissao` ENUM('superadmin','admin','usuario') NOT NULL COLLATE 'utf8_general_ci',
     PRIMARY KEY (`id`) USING BTREE
     )
     COLLATE='utf8_general_ci'
