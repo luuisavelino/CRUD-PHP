@@ -41,6 +41,7 @@ if ($_SERVER["REQUEST_METHOD"] === 'POST'){
     $usuario = new Usuario();
     $usuario->setId($_GET['id']);
     $usuario->setUsuario($_POST['usuario']);
+    
     if ("********" != $_POST['senha']) {
         $usuario->setSenha(md5($_POST['senha']));
     }
