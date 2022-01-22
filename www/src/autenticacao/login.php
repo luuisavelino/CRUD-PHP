@@ -3,7 +3,6 @@ session_start();
 
 //include('conexao.php');
 require_once '../../vendor/autoload.php';
-use \App\Domain\Model\Usuario;
 use \App\Infrastructure\Repository\UsuarioDao;
 
 

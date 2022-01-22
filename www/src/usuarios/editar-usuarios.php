@@ -26,11 +26,10 @@ if(empty($usuarioSelecionado)){
 
 if ($_SERVER["REQUEST_METHOD"] === 'POST'){
 
-    if (empty($_POST['usuario']) || empty($_POST['senha']) || empty($_POST['email']) || empty($_POST['empresa']) || empty($_POST['permissao'])) {
+    if (empty($_POST['usuario']) || empty($_POST['senha']) || empty($_POST['email']) || empty($_POST['empresa'])) {
         header('location: usuarios.php?status=error');
         exit;
     }
-
 
     $email = $_POST['email'];
     if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
@@ -42,12 +41,20 @@ if ($_SERVER["REQUEST_METHOD"] === 'POST'){
     $usuario->setId($_GET['id']);
     $usuario->setUsuario($_POST['usuario']);
     
-    if ("********" != $_POST['senha']) {
+    if ("********" == $_POST['senha']) {
+        $usuario->setSenha($usuarioSelecionado[0]['senha']);
+    } else {
         $usuario->setSenha(md5($_POST['senha']));
     }
+
     $usuario->setEmail($_POST['email']);
     $usuario->setEmpresa($_POST['empresa']);
-    $usuario->setPermissao($_POST['permissao']);
+
+    if (empty($_POST['permissao'])) {
+        $usuario->setPermissao($usuarioSelecionado[0]['usuario']);
+    } else {
+        $usuario->setPermissao($_POST['permissao']);
+    }
 
     $UsuarioDao = new UsuarioDao();
     $UsuarioDao->update($usuario);

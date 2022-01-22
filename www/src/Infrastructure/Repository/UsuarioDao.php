@@ -9,6 +9,10 @@ class UsuarioDao {
 
     public function create(Usuario $p) {
 
+        if ($p->getPermissao() == '') {
+            $p->setPermissao('usuario');
+        }
+
         $query = 'INSERT INTO usuarios (usuario, senha, email, empresa, permissao) VALUES (?,?,?,?,?);';        
 
         $stmt = Conexao::getConn()->prepare($query);
@@ -57,10 +61,8 @@ class UsuarioDao {
 
 
     public function update(Usuario $p) {
+
         $query = 'UPDATE usuarios SET usuario = ?, senha = ?, email = ?, empresa = ?, permissao = ? WHERE id = ?';
-
-        echo "<pre>"; print_r($query); echo "</pre>"; exit;
-
 
         $stmt = Conexao::getConn()->prepare($query);
         $stmt->bindValue(1, $p->getUsuario());
