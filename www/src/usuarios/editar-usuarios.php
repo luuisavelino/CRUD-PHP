@@ -26,7 +26,7 @@ if(empty($usuarioSelecionado)){
 
 if ($_SERVER["REQUEST_METHOD"] === 'POST'){
 
-    if (empty($_POST['usuario']) || empty($_POST['email']) || empty($_POST['empresa'])) {
+    if (empty($_POST['usuario']) || empty($_POST['senha']) || empty($_POST['email']) || empty($_POST['empresa']) || empty($_POST['permissao'])) {
         header('location: usuarios.php?status=error');
         exit;
     }
@@ -46,6 +46,7 @@ if ($_SERVER["REQUEST_METHOD"] === 'POST'){
     }
     $usuario->setEmail($_POST['email']);
     $usuario->setEmpresa($_POST['empresa']);
+    $tarefa->setPermissao($_POST['permissao']);
 
     $UsuarioDao = new UsuarioDao();
     $UsuarioDao->update($usuario);

@@ -9,13 +9,14 @@ class UsuarioDao {
 
     public function create(Usuario $p) {
 
-        $query = 'INSERT INTO usuarios (usuario, senha, email, empresa) VALUES (?,?,?,?);';        
+        $query = 'INSERT INTO usuarios (usuario, senha, email, empresa, permissao) VALUES (?,?,?,?,?);';        
 
         $stmt = Conexao::getConn()->prepare($query);
         $stmt->bindValue(1, $p->getUsuario());
         $stmt->bindValue(2, md5($p->getSenha()));
         $stmt->bindValue(3, $p->getEmail());
         $stmt->bindValue(4, $p->getEmpresa());
+        $stmt->bindValue(5, $p->getPermissao());
         $stmt->execute();
 
         
@@ -56,14 +57,15 @@ class UsuarioDao {
 
 
     public function update(Usuario $p) {
-        $query = 'UPDATE usuarios SET usuario = ?, senha = ?, email = ?, empresa = ? WHERE id = ?';
+        $query = 'UPDATE usuarios SET usuario = ?, senha = ?, email = ?, empresa = ?, permissao = ? WHERE id = ?';
 
         $stmt = Conexao::getConn()->prepare($query);
         $stmt->bindValue(1, $p->getUsuario());
         $stmt->bindValue(2, $p->getSenha());
         $stmt->bindValue(3, $p->getEmail());
         $stmt->bindValue(4, $p->getEmpresa());
-        $stmt->bindValue(5, $p->getId());
+        $stmt->bindValue(5, $p->getPermissao());
+        $stmt->bindValue(6, $p->getId());
         $stmt->execute();
     }
 
@@ -87,7 +89,6 @@ class UsuarioDao {
         $stmt->execute();
 
         return $stmt->rowCount();
-
     }
 
 

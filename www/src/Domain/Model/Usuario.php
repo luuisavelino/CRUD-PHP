@@ -4,7 +4,7 @@ namespace App\Domain\Model;
 
 class Usuario {
 
-    public $id, $usuario, $senha, $email, $empresa;
+    public $id, $usuario, $senha, $email, $empresa, $permissao;
 
     public function getId() {
         return $this->id;
@@ -44,6 +44,14 @@ class Usuario {
 
     public function setEmpresa($empresa) {
         $this->empresa = $empresa;
+    }
+
+    public function getPermissao() {
+        return $this->permissao;
+    }
+
+    public function setPermissao($permissao) {
+        $this->permissao = $permissao;
     }
     
 }

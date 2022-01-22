@@ -38,6 +38,7 @@ if(isset($_GET['status'])){
             <th>Senha</th>
             <th>Email</th>
             <th>Empresa</th>
+            <th>Permissao</th>
             <th data-sortable="false">Ações</th>
           </tr> 
         </thead>
