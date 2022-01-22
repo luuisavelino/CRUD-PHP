@@ -46,7 +46,7 @@ if ($_SERVER["REQUEST_METHOD"] === 'POST'){
     }
     $usuario->setEmail($_POST['email']);
     $usuario->setEmpresa($_POST['empresa']);
-    $tarefa->setPermissao($_POST['permissao']);
+    $usuario->setPermissao($_POST['permissao']);
 
     $UsuarioDao = new UsuarioDao();
     $UsuarioDao->update($usuario);
