@@ -17,6 +17,7 @@ if ($_SERVER["REQUEST_METHOD"] === 'POST'){
     $loginDao = new UsuarioDao();
     $row = $loginDao->login($_POST['usuario'], md5($_POST['senha']));
 
+	
 	if($row == 1) {
 		$_SESSION['usuario'] = $_POST['usuario'];
 		header('Location: ../../index.php');
