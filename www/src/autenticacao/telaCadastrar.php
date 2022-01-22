@@ -19,10 +19,10 @@ session_start();
  
             <div id="formContent">
 
-            <a href="./telaLogin.php"><h2 class="inactive underlineHover"> Sign In </h2></a>
-            <a href="./cadastrar-usuario.php"><h2 class="active">Sign Up </h2></a>
+            <a href="./login.php"><h2 class="inactive underlineHover"> Sign In </h2></a>
+            <a href="./cadastrar.php"><h2 class="active">Sign Up </h2></a>
         
-            <form action="./cadastrar-usuario.php" method="POST">
+            <form action="./cadastrar.php" method="POST">
                 
                 <input name="usuario" name="text" type="text" class="fadeIn second"  placeholder="Insira um nome de usuário">
                 <input name="senha" type="password" class="fadeIn third" placeholder="Digite uma senha">

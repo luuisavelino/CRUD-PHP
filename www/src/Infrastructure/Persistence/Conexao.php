@@ -12,7 +12,7 @@ class Conexao {
     public static function getConn() {
 
         if(!isset(self::$instance)):
-            self::$instance = new PDO('mysql:host=localhost;dbname=challenge;charset=utf8','root','mariadb@password!');
+            self::$instance = new PDO('mysql:host=mysql;dbname=challenge;charset=utf8','root','admin');
         endif;
         
         return self::$instance;
