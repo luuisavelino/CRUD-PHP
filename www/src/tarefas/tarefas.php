@@ -1,8 +1,6 @@
 <?php
 
-session_start();
-include('../autenticacao/verifica_login.php');
-
+require_once './sessao-tarefas.php';
 require_once '../../vendor/autoload.php';
 
 use \App\Infrastructure\Repository\TarefaDao;
@@ -11,8 +9,6 @@ $TarefaDao = new TarefaDao();
 $tarefas = $TarefaDao->read();
 
 $tarefasID = filter_input_array(INPUT_POST, FILTER_DEFAULT);
-
-
 
 if (!empty($tarefasID['excluirTarefa'])) {
     if(isset($tarefasID['excluir'])) {

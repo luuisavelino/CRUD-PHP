@@ -1,8 +1,6 @@
 <?php
 
-session_start();
-include('../autenticacao/verifica_login.php');
-
+require_once './sessao-usuarios.php';
 require_once '../../vendor/autoload.php';
 
 use \App\Infrastructure\Repository\UsuarioDao;

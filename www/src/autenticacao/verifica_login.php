@@ -1,6 +1,6 @@
 <?php
 session_start();
 if(!$_SESSION['usuario']) {
-	header('Location: ../autenticacao/telaLogin.php');
+	header('Location: ../autenticacao/login.php');
 	exit();
 }

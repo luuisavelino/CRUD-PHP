@@ -1,13 +1,10 @@
 <?php
 
-session_start();
-include('../autenticacao/verifica_login.php');
-
+require_once './sessao-usuarios.php';
 require_once '../../vendor/autoload.php';
 
 use \App\Domain\Model\Usuario;
 use \App\Infrastructure\Repository\UsuarioDao;
-
 
 define('TITLE','Edição de Usuario');
 
@@ -51,7 +48,7 @@ if ($_SERVER["REQUEST_METHOD"] === 'POST'){
     $usuario->setEmpresa($_POST['empresa']);
 
     if (empty($_POST['permissao'])) {
-        $usuario->setPermissao($usuarioSelecionado[0]['usuario']);
+        $usuario->setPermissao($usuarioSelecionado[0]['permissao']);
     } else {
         $usuario->setPermissao($_POST['permissao']);
     }
