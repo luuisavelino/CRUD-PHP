@@ -1,28 +1,28 @@
 <?php
+
 session_start();
-include('../autenticacao/verifica_login.php');
+
 require_once '../../vendor/autoload.php';
 
 use \App\Domain\Model\Usuario;
 use \App\Infrastructure\Repository\UsuarioDao;
 
-
 if ($_SERVER["REQUEST_METHOD"] === 'POST'){
 
 
     if (empty($_POST['usuario']) || empty($_POST['senha']) || empty($_POST['email']) ||empty($_POST['empresa'])) {
-        header('location: telaCadastrar.php?status=error');
+        header('location: cadastrar.php?status=error');
         exit;
     }
 
     if ($_POST['senha'] != $_POST['senhaConfirmada']) {
-        header('location: telaCadastrar.php?status=error');
+        header('location: cadastrar.php?status=error');
         exit;
     }
 
     $email = $_POST['email'];
     if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-        header('location: telaCadastrar.php?status=error');
+        header('location: cadastrar.php?status=error');
         exit;
     }
 
@@ -30,7 +30,7 @@ if ($_SERVER["REQUEST_METHOD"] === 'POST'){
     $row = $verificacaoDao->confirmaUsuario($_POST['usuario']);
 
     if($row != 0) {
-        header('Location: telaCadastrar.php?status=error');
+        header('Location: cadastrar.php?status=error');
         exit;
     }
 
@@ -44,7 +44,7 @@ if ($_SERVER["REQUEST_METHOD"] === 'POST'){
     $UsuarioDao = new UsuarioDao();
     $UsuarioDao->create($usuario);
 
-    header('location: ./telaLogin.php');
+    header('location: ./login.php');
     exit;
 
 }

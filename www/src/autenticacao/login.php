@@ -24,8 +24,10 @@ if ($_SERVER["REQUEST_METHOD"] === 'POST'){
 		exit();
 	} else {
 		$_SESSION['nao_autenticado'] = true;
-		header('Location: telaLogin.php?status=error');
+		header('Location: login.php?status=error');
 		exit();
 	}
 
 }
+
+include __DIR__.'/telaLogin.php';

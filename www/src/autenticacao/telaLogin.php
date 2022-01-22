@@ -30,8 +30,8 @@ session_start();
 
             <div id="formContent">
 
-            <a href="./telaLogin.php"><h2 class="active"> Sign In </h2></a>
-            <a href="./cadastrar-usuario.php"><h2 class="inactive underlineHover">Sign Up </h2></a>
+            <a href="./login.php"><h2 class="active"> Sign In </h2></a>
+            <a href="./cadastrar.php"><h2 class="inactive underlineHover">Sign Up </h2></a>
         
         
             <form action="./login.php" method="POST">
@@ -41,8 +41,7 @@ session_start();
                 <input type="submit" class="fadeIn fourth" value="Log In">
                 
             </form>
- 
-        
+
             </div>
         </div>
     </body>

@@ -17,7 +17,7 @@ session_start();
                                         if($_SESSION['usuario']){
                                             echo (''); 
                                         } else { echo ('class="red" '); } 
-                                        ?>href="./src/autenticacao/telaLogin.php"><p>Login</p></a></li>
+                                        ?>href="./src/autenticacao/login.php"><p>Login</p></a></li>
 
             <li data-text="Sobre"><a href="#">Sobre</a></li>
             <li data-text="Usuarios"><a href="./src/usuarios/usuarios.php">Usuarios</a></li>
