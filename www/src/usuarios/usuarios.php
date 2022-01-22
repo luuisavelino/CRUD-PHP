@@ -20,11 +20,11 @@ if (!empty($usuariosID['excluirUsuario'])) {
         $UsuarioDao = new UsuarioDao();
         $UsuarioDao->delete($ids);
     
-        header('location: clientes.php?status=success');
+        header('location: usuarios.php?status=success');
         exit;
 
     } else {
-        header('location: clientes.php?status=error');
+        header('location: usuarios.php?status=error');
     }
 }
 

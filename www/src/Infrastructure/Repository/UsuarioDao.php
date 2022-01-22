@@ -56,7 +56,7 @@ class UsuarioDao {
 
 
     public function update(Usuario $p) {
-        $query = 'UPDATE usuarios SET usuario = ?, senha = ? , email = ?, empresa = ? WHERE id = ?';
+        $query = 'UPDATE usuarios SET usuario = ?, senha = ?, email = ?, empresa = ? WHERE id = ?';
 
         $stmt = Conexao::getConn()->prepare($query);
         $stmt->bindValue(1, $p->getUsuario());
@@ -91,5 +91,14 @@ class UsuarioDao {
     }
 
 
+    public function login($usuario, $senha) {
+  
+        $query = "SELECT usuario FROM usuarios WHERE usuario = '{$usuario}' and senha = '{$senha}';";    
+        
+        $stmt = Conexao::getConn()->prepare($query);
+        $stmt->execute();
+
+        return $stmt->rowCount();
+    }
 
 }

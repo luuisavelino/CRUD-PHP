@@ -9,7 +9,7 @@ use \App\Infrastructure\Repository\UsuarioDao;
 define('TITLE','Edição de Usuario');
 
 if(!isset($_GET['id']) or !is_numeric($_GET['id'])){
-    header('location: clientes.php?status=error');
+    header('location: usuarios.php?status=error');
     exit;
 }
 
@@ -17,21 +17,21 @@ $UsuarioDao = new UsuarioDao();
 $usuarioSelecionado = $UsuarioDao->readUsuario($_GET['id']);
 
 if(empty($usuarioSelecionado)){
-    header('location: clientes.php?status=error');
+    header('location: usuarios.php?status=error');
     exit;
 }
 
 if ($_SERVER["REQUEST_METHOD"] === 'POST'){
 
     if (empty($_POST['usuario']) || empty($_POST['email']) || empty($_POST['empresa'])) {
-        header('location: clientes.php?status=error');
+        header('location: usuarios.php?status=error');
         exit;
     }
 
 
     $email = $_POST['email'];
     if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-        header('location: clientes.php?status=error');
+        header('location: usuarios.php?status=error');
         exit;
     }
 
@@ -47,7 +47,7 @@ if ($_SERVER["REQUEST_METHOD"] === 'POST'){
     $UsuarioDao = new UsuarioDao();
     $UsuarioDao->update($usuario);
 
-    header('location: clientes.php?status=success');
+    header('location: usuarios.php?status=success');
     exit;
 }
 

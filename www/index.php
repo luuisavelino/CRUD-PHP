@@ -20,7 +20,7 @@ session_start();
                                         ?>href="./src/autenticacao/telaLogin.php"><p>Login</p></a></li>
 
             <li data-text="Sobre"><a href="#">Sobre</a></li>
-            <li data-text="Clientes"><a href="./src/clientes/clientes.php">Clientes</a></li>
+            <li data-text="Usuarios"><a href="./src/usuarios/usuarios.php">Usuarios</a></li>
             <li data-text="Produtos"><a href="./src/produtos/produtos.php">Produtos</a></li>
             <li data-text="Tarefas"><a href="./src/tarefas/tarefas.php">Tarefas</a></li>
             <li data-text="Contato"><a href="contato.html">Contato</a></li>

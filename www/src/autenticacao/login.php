@@ -1,30 +1,31 @@
 <?php
 session_start();
-include('conexao.php');
 
-if(empty($_POST['usuario']) || empty($_POST['senha'])) {
-	header('Location: telaLogin.php?status=error');
-	exit();
-}
-
-$usuario = mysqli_real_escape_string($conexao, $_POST['usuario']);
-$senha = mysqli_real_escape_string($conexao, $_POST['senha']);
+//include('conexao.php');
+require_once '../../vendor/autoload.php';
+use \App\Domain\Model\Usuario;
+use \App\Infrastructure\Repository\UsuarioDao;
 
 
-
-$query = "select usuario from usuarios where usuario = '{$usuario}' and senha = md5('{$senha}');";
-$result = mysqli_query($conexao, $query);
-$row = mysqli_num_rows($result);
+if ($_SERVER["REQUEST_METHOD"] === 'POST'){
 
 
+    if (empty($_POST['usuario']) || empty($_POST['senha'])) {
+        header('location: login.php?status=error');
+        exit;
+    }
 
+    $loginDao = new UsuarioDao();
+    $row = $loginDao->login($_POST['usuario'], md5($_POST['senha']));
 
-if($row == 1) {
-	$_SESSION['usuario'] = $usuario;
-	header('Location: ../../index.php');
-	exit();
-} else {
-	$_SESSION['nao_autenticado'] = true;
-	header('Location: telaLogin.php?status=error');
-	exit();
+	if($row == 1) {
+		$_SESSION['usuario'] = $_POST['usuario'];
+		header('Location: ../../index.php');
+		exit();
+	} else {
+		$_SESSION['nao_autenticado'] = true;
+		header('Location: telaLogin.php?status=error');
+		exit();
+	}
+
 }

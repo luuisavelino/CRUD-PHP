@@ -9,7 +9,7 @@
     </div>
     
     <div class="form-group">
-      <a href="clientes.php"><button type="button" class="btn btn-success">Cancelar</button></a>
+      <a href="usuarios.php"><button type="button" class="btn btn-success">Cancelar</button></a>
       <button type="submit" name="excluir" class="btn btn-danger">Excluir</div>
  
   </fomr> 

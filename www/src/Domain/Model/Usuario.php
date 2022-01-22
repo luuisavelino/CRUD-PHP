@@ -22,11 +22,11 @@ class Usuario {
         $this->usuario = $usuario;
     }
 
-    public function getsenha() {
+    public function getSenha() {
         return $this->senha;
     }
 
-    public function setsenha($senha) {
+    public function setSenha($senha) {
         $this->senha = $senha;
     }
 

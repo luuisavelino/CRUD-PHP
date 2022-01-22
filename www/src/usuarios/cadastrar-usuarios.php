@@ -5,19 +5,19 @@ require_once '../../vendor/autoload.php';
 use \App\Domain\Model\Usuario;
 use \App\Infrastructure\Repository\UsuarioDao;
 
-define('TITLE','Cadastro de Cliente');
+define('TITLE','Cadastro de Usuarios');
 
 if ($_SERVER["REQUEST_METHOD"] === 'POST'){
 
 
     if (empty($_POST['usuario']) || empty($_POST['senha']) || empty($_POST['email']) ||empty($_POST['empresa'])) {
-        header('location: clientes.php?status=error');
+        header('location: usuarios.php?status=error');
         exit;
     }
 
     $email = $_POST['email'];
     if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-        header('location: clientes.php?status=error');
+        header('location: usuarios.php?status=error');
         exit;
     }
 
@@ -30,7 +30,7 @@ if ($_SERVER["REQUEST_METHOD"] === 'POST'){
     $UsuarioDao = new UsuarioDao();
     $UsuarioDao->create($usuario);
 
-    header('location: clientes.php?status=success');
+    header('location: usuarios.php?status=success');
     exit;
 }
 
