@@ -23,6 +23,7 @@ session_start();
             <li data-text="Usuarios"><a href="./src/usuarios/usuarios.php">Usuarios</a></li>
             <li data-text="Produtos"><a href="./src/produtos/produtos.php">Produtos</a></li>
             <li data-text="Tarefas"><a href="./src/tarefas/tarefas.php">Tarefas</a></li>
+            <li data-text="Graficos"><a href="./src/estatisticas/graficos.php">Graficos</a></li>
             <li data-text="Contato"><a href="contato.html">Contato</a></li>
             
             <li data-text="Sair"><a <?php 
