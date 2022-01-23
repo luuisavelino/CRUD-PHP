@@ -41,7 +41,21 @@ if ($_SERVER["REQUEST_METHOD"] === 'POST'){
         $_POST['permissao'] = $usuarioSelecionado[0]['permissao'];
     }
 
+    //Pega a entrada e retira todos os caracteres especiais
+    function filtroEntrada($entrada)
+    {
+        $text = preg_replace("/[^a-zA-Z0-9]+/", "", $entrada);
+        return $text;
+    }
 
+    //Compara se a entrada possui ou não caracteres especiais
+    if ($_POST['usuario'] != filtroEntrada($_POST['usuario']) || $_POST['empresa'] != filtroEntrada($_POST['empresa'])) {
+        $_SESSION['time'] = time();
+        $_SESSION['status'] = 'error';
+        $_SESSION['typeError'] = 'Caracteres inválidos';
+        header('location: usuarios.php');
+        exit;
+    }
 
     $email = $_POST['email'];
     if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
