@@ -1,5 +1,4 @@
 <?php
-
 session_start();
 
 require_once '../../vendor/autoload.php';
@@ -11,7 +10,10 @@ if ($_SERVER["REQUEST_METHOD"] === 'POST'){
 
     //Verifica se todos os campos foram preenchidos
     if (empty($_POST['usuario']) || empty($_POST['senha']) || empty($_POST['email']) ||empty($_POST['empresa'])) {
-        header('location: cadastrar.php?status=error');
+        $_SESSION['time'] = time();
+        $_SESSION['status'] = 'error';
+        $_SESSION['typeError'] = 'Campos não preenchidos';
+        header('location: cadastrar.php');
         exit;
     }
 
@@ -24,20 +26,29 @@ if ($_SERVER["REQUEST_METHOD"] === 'POST'){
 
     //Compara se a entrada possui ou não caracteres especiais
     if ($_POST['usuario'] != filtroEntrada($_POST['usuario'])) {
-        header('location: cadastrar.php?status=error');
+        $_SESSION['time'] = time();
+        $_SESSION['status'] = 'error';
+        $_SESSION['typeError'] = 'Caracteres inválidos';
+        header('location: cadastrar.php');
         exit;
     }
 
     //Confirmação de senha
     if ($_POST['senha'] != $_POST['senhaConfirmada']) {
-        header('location: cadastrar.php?status=error');
+        $_SESSION['time'] = time();
+        $_SESSION['status'] = 'error';
+        $_SESSION['typeError'] = 'Erro na confirmação da senha';
+        header('location: cadastrar.php');
         exit;
     }
 
     //Filtro de email
     $email = $_POST['email'];
     if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-        header('location: cadastrar.php?status=error');
+        $_SESSION['time'] = time();
+        $_SESSION['status'] = 'error';
+        $_SESSION['typeError'] = 'Email inválido';
+        header('location: cadastrar.php');
         exit;
     }
 
@@ -46,7 +57,10 @@ if ($_SERVER["REQUEST_METHOD"] === 'POST'){
     $row = $verificacaoDao->confirmaUsuario($_POST['usuario']);
 
     if($row != 0) {
-        header('Location: cadastrar.php?status=error');
+        $_SESSION['time'] = time();
+        $_SESSION['status'] = 'error';
+        $_SESSION['typeError'] = 'Usuário já cadastrado';
+        header('location: cadastrar.php');
         exit;
     }
 
@@ -61,8 +75,13 @@ if ($_SERVER["REQUEST_METHOD"] === 'POST'){
     $UsuarioDao = new UsuarioDao();
     $UsuarioDao->create($usuario);
 
+    
+    $_SESSION['time'] = time();
+    $_SESSION['status'] = 'success';
+    $_SESSION['typeSuccess'] = 'Usuário cadastrado';
     header('location: ./login.php');
     exit;
+
 
 }
 

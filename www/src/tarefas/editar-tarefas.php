@@ -40,6 +40,23 @@ if ($_SERVER["REQUEST_METHOD"] === 'POST'){
         exit;  
     }
 
+    //Pega a entrada e retira todos os caracteres especiais
+    function filtroEntrada($entrada)
+    {
+        $text = preg_replace("/[^a-zA-Z0-9]+/", "", $entrada);
+        return $text;
+    }
+
+    //Compara se a entrada possui ou não caracteres especiais
+    if ($_POST['tarefa'] != filtroEntrada($_POST['tarefa']) || $_POST['prazo'] != filtroEntrada($_POST['prazo'])) {
+        $_SESSION['time'] = time();
+        $_SESSION['status'] = 'error';
+        $_SESSION['typeError'] = 'Caracteres inválidos';
+        header('location: tarefas.php');
+        exit;
+    }
+
+
     $tarefa = new Tarefa();
     $tarefa->setId($_GET['id']);
     $tarefa->setTarefa($_POST['tarefa']);

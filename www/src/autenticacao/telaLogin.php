@@ -14,39 +14,29 @@ session_start();
 
     <body>
         <div class="wrapper fadeInDown">
-            <div>
+            <div id="formContent">
                 <?php
-                    if(isset($_SESSION['nao_autenticado'])):
-                ?>
-                <div class="alert alert-danger">
-                    <p>ERRO: Usuário ou senha inválidos.</p>
-                </div>
-                <?php
-                    endif;
-                    unset($_SESSION['nao_autenticado']);
-                ?>
-            </div>
-                <?php
-                    $mensagem = '';
-                    if(isset($_SESSION['status']) == 'erro'):
-                ?>
-                <div class="alert alert-danger">
-                    <p>ERRO: Sem permissão de acesso!</p>
-                </div>
-                <?php
-                    endif;
-                    unset($_SESSION['status']);
-                ?>
-            <div>
-                <?php
-                    if(isset($_SESSION['nao_autenticado'])):
-                ?>
-                <div class="alert alert-danger">
-                    <p>ERRO: Usuário ou senha inválidos.</p>
-                </div>
-                <?php
-                    endif;
-                    unset($_SESSION['nao_autenticado']);
+                if (time() - $_SESSION['time'] > 10) { // sessão iniciada há mais de 10 segundos
+                unset($_SESSION['time']);
+                unset($_SESSION['status']);
+                unset($_SESSION['typeError']);
+                unset($_SESSION['typeSuccess']);
+                }
+
+
+                $mensagem = '';
+                if(isset($_SESSION['time'])){
+                    switch ($_SESSION['status']) {
+                        case 'success':
+                        echo '<div class="alert alert-success">Ação executada com sucesso! '.$_SESSION['typeSuccess'].'.</div>';
+                        break;
+
+                        case 'error':
+                        echo "<pre>"; print_r(('<div class="alert alert-danger">'.$_SESSION['typeError'].'. Ação não executada!</div>')); echo "</pre>"; exit;
+                        echo '<div class="alert alert-danger">'.$_SESSION['typeError'].'. Ação não executada!</div>';
+                        break;
+                    }
+                }
                 ?>
             </div>
 
