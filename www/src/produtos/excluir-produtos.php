@@ -24,8 +24,8 @@ if (isset($_POST['excluir'])){
     $ProdutoDao->delete([$_GET['id']]);
 
     $_SESSION['time'] = time();
-    $_SESSION['status'] = 'error';
-    $_SESSION['typeError'] = 'Produto excluído';
+    $_SESSION['status'] = 'success';
+    $_SESSION['typeSuccess'] = 'Produto excluído';
     header('location: produtos.php');
     exit;
 }

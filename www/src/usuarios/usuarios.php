@@ -14,6 +14,13 @@ if (!empty($usuariosID['excluirUsuario'])) {
     if(isset($usuariosID['excluir'])) {
         $i=0;
         foreach($usuariosID['excluir'] as $id => $usuario) {
+            if ($id == 1) {
+                $_SESSION['time'] = time();
+                $_SESSION['status'] = 'error';
+                $_SESSION['typeError'] = 'Não é possível excluir o usuário root';
+                header('location: usuarios.php');
+                exit; 
+            }
             $ids[$i] = $id;
             $i++;
         }

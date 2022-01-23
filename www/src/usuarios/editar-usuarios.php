@@ -37,6 +37,12 @@ if ($_SERVER["REQUEST_METHOD"] === 'POST'){
         exit;
     }
 
+    if (empty($_POST['permissao'])) {
+        $_POST['permissao'] = $usuarioSelecionado[0]['permissao'];
+    }
+
+
+
     $email = $_POST['email'];
     if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
         $_SESSION['time'] = time();
@@ -45,6 +51,24 @@ if ($_SERVER["REQUEST_METHOD"] === 'POST'){
         header('location: usuarios.php');
         exit;
     }
+
+    if ($usuarioSelecionado[0]['id'] == 1 && $_POST['usuario'] != 'root') {
+        $_SESSION['time'] = time();
+        $_SESSION['status'] = 'error';
+        $_SESSION['typeError'] = 'Não é possível alterar o nome do usuário root';
+        header('location: usuarios.php');
+        exit; 
+    }
+
+    if ($usuarioSelecionado[0]['id'] == 1 && $_POST['permissao'] != 'superadmin') {
+        $_SESSION['time'] = time();
+        $_SESSION['status'] = 'error';
+        $_SESSION['typeError'] = 'Não é possível alterar a permissão do usuário root';
+        header('location: usuarios.php');
+        exit; 
+    }
+
+
 
     $usuario = new Usuario();
     $usuario->setId($_GET['id']);
@@ -58,12 +82,7 @@ if ($_SERVER["REQUEST_METHOD"] === 'POST'){
 
     $usuario->setEmail($_POST['email']);
     $usuario->setEmpresa($_POST['empresa']);
-
-    if (empty($_POST['permissao'])) {
-        $usuario->setPermissao($usuarioSelecionado[0]['permissao']);
-    } else {
-        $usuario->setPermissao($_POST['permissao']);
-    }
+    $usuario->setPermissao($_POST['permissao']);
 
     $UsuarioDao = new UsuarioDao();
     $UsuarioDao->update($usuario);

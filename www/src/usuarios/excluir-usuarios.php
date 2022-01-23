@@ -18,6 +18,14 @@ $usuarioSelecionado = $UsuarioDao->readUsuario($_GET['id']);
 
 if (isset($_POST['excluir'])){
 
+    if ([$_GET['id']][0] == 1) {
+        $_SESSION['time'] = time();
+        $_SESSION['status'] = 'error';
+        $_SESSION['typeError'] = 'Não é possível excluir o usuário root';
+        header('location: usuarios.php');
+        exit; 
+    }
+    
     $UsuarioDao = new UsuarioDao();
     $UsuarioDao->delete([$_GET['id']]);
 

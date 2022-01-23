@@ -23,6 +23,7 @@ Este é um projeto que foi desenvolvido para o Challenge da Made4it
     )
     COLLATE='utf8_general_ci'
     AUTO_INCREMENT=1;
+    INSERT INTO usuarios (usuario, senha, email, empresa, permissao) VALUES ('root',md5('admin'),'root@root.com','CRUD-PHP','superadmin');
 
 
     CREATE TABLE `produtos` (
