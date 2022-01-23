@@ -21,21 +21,20 @@ if (!empty($usuariosID['excluirUsuario'])) {
         $UsuarioDao = new UsuarioDao();
         $UsuarioDao->delete($ids);
     
+        $_SESSION['time'] = time();
         $_SESSION['status'] = 'success';
         $_SESSION['typeSuccess'] = 'Clientes excluídos';
         header('location: usuarios.php');
         exit;
 
     } else {
+        $_SESSION['time'] = time();
         $_SESSION['status'] = 'error';
         $_SESSION['typeError'] = 'Nenhum usuário selecionado';
         header('location: usuarios.php');
         exit;
     }
 }
-
-
-
 
 include __DIR__.'/includes/header.php';
 include __DIR__.'/includes/listagem.php';

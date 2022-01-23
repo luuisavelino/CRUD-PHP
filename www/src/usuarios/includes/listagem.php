@@ -1,7 +1,13 @@
 <?php
 
+
+
+if (time() - $_SESSION['time'] > 10) { // sessão iniciada há mais de 10 segundos
+  unset($_SESSION['time']);
+}
+
 $mensagem = '';
-if(isset($_SESSION['status'])){
+if(isset($_SESSION['time'])){
   switch ($_SESSION['status']) {
     case 'success':
       $mensagem = '<div class="alert alert-success">Ação executada com sucesso! '.$_SESSION['typeSuccess'].'.</div>';

@@ -6,6 +6,7 @@ require_once '../../vendor/autoload.php';
 use \App\Infrastructure\Repository\UsuarioDao;
 
 if(!isset($_GET['id']) or !is_numeric($_GET['id'])){
+    $_SESSION['time'] = time();
     $_SESSION['status'] = 'error';
     $_SESSION['typeError'] = 'Email inválido';
     header('location: usuarios.php');
@@ -20,8 +21,9 @@ if (isset($_POST['excluir'])){
     $UsuarioDao = new UsuarioDao();
     $UsuarioDao->delete([$_GET['id']]);
 
+    $_SESSION['time'] = time();
     $_SESSION['status'] = 'success';
-    $_SESSION['typeSuccess'] = 'Cliente excluído';
+    $_SESSION['typeSuccess'] = 'Usuário excluído';
     header('location: usuarios.php');
     exit;
 

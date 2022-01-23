@@ -7,7 +7,7 @@ session_start();
     
     <head>
         <meta charset="utf-8">
-        <title>CHALLENGE</title>
+        <title>CHALLENGE</title>       
         <link rel="stylesheet" href="../css/login.css">
     </head>
     
@@ -18,7 +18,30 @@ session_start();
                 <?php
                     if(isset($_SESSION['nao_autenticado'])):
                 ?>
-                <div class="notification is-danger">
+                <div class="alert alert-danger">
+                    <p>ERRO: Usuário ou senha inválidos.</p>
+                </div>
+                <?php
+                    endif;
+                    unset($_SESSION['nao_autenticado']);
+                ?>
+            </div>
+                <?php
+                    $mensagem = '';
+                    if(isset($_SESSION['status']) == 'erro'):
+                ?>
+                <div class="alert alert-danger">
+                    <p>ERRO: Sem permissão de acesso!</p>
+                </div>
+                <?php
+                    endif;
+                    unset($_SESSION['status']);
+                ?>
+            <div>
+                <?php
+                    if(isset($_SESSION['nao_autenticado'])):
+                ?>
+                <div class="alert alert-danger">
                     <p>ERRO: Usuário ou senha inválidos.</p>
                 </div>
                 <?php

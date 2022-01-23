@@ -1,6 +1,15 @@
 <?php
 session_start();
 
+$mensagem = '';
+if(isset($_SESSION['status'])){
+  switch ($_SESSION['status']) {
+    case 'error':
+      $mensagem = '<div class="alert alert-danger">'.$_SESSION['typeError'].'. Ação não executada!</div>';
+      break;
+  }
+}
+
 //include('conexao.php');
 require_once '../../vendor/autoload.php';
 use \App\Infrastructure\Repository\UsuarioDao;
