@@ -1,9 +1,10 @@
 <?php
 
-
-
 if (time() - $_SESSION['time'] > 10) { // sessão iniciada há mais de 10 segundos
   unset($_SESSION['time']);
+  unset($_SESSION['status']);
+  unset($_SESSION['typeError']);
+  unset($_SESSION['typeSuccess']);
 }
 
 $mensagem = '';

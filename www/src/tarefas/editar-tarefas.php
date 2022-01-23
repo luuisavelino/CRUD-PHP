@@ -11,24 +11,33 @@ use \App\Infrastructure\Repository\TarefaDao;
 define('TITLE','Edição de Tarefas');
 
 if(!isset($_GET['id']) or !is_numeric($_GET['id'])){
-    header('location: tarefas.php?status=error');
-    exit;
+    $_SESSION['time'] = time();
+    $_SESSION['status'] = 'error';
+    $_SESSION['typeError'] = 'ID da tarefa inválido';
+    header('location: tarefas.php');
+    exit;  
 }
 
 $TarefaDao = new TarefaDao();
 $tarefaSelecionada = $TarefaDao->readTarefa($_GET['id']);
 
 if(empty($tarefaSelecionada)){
-    header('location: tarefas.php?status=error');
-    exit;
+    $_SESSION['time'] = time();
+    $_SESSION['status'] = 'error';
+    $_SESSION['typeError'] = 'Nenhuma tarefa selecionada';
+    header('location: tarefas.php');
+    exit;  
 }
 
 
 if ($_SERVER["REQUEST_METHOD"] === 'POST'){
 
     if (empty($_POST['tarefa']) || empty($_POST['prazo']) || empty($_POST['status'])) {
-        header('location: tarefas.php?status=error');
-        exit;
+        $_SESSION['time'] = time();
+        $_SESSION['status'] = 'error';
+        $_SESSION['typeError'] = 'Campos não preenchidos';
+        header('location: tarefas.php');
+        exit;  
     }
 
     $tarefa = new Tarefa();
@@ -40,8 +49,11 @@ if ($_SERVER["REQUEST_METHOD"] === 'POST'){
     $TarefaDao = new TarefaDao();
     $TarefaDao->update($tarefa);
 
-    header('location: tarefas.php?status=success');
-    exit;
+    $_SESSION['time'] = time();
+    $_SESSION['status'] = 'success';
+    $_SESSION['typeSuccess'] = 'Tarefa editada';
+    header('location: tarefas.php');
+    exit;  
 
 }
 

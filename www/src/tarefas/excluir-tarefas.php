@@ -8,8 +8,11 @@ use \App\Infrastructure\Repository\TarefaDao;
 
 
 if(!isset($_GET['id']) or !is_numeric($_GET['id'])){
-    header('location: tarefas.php?status=error');
-    exit;
+    $_SESSION['time'] = time();
+    $_SESSION['status'] = 'error';
+    $_SESSION['typeError'] = 'ID da tarefa inválido';
+    header('location: tarefas.php');
+    exit;  
 }
 
 $TarefaDao = new TarefaDao();
@@ -21,8 +24,11 @@ if (isset($_POST['excluir'])){
     $TarefaDao = new TarefaDao();
     $TarefaDao->delete([$_GET['id']]);
 
-    header('location: tarefas.php?status=success');
-    exit;
+    $_SESSION['time'] = time();
+    $_SESSION['status'] = 'success';
+    $_SESSION['typeSuccess'] = 'Tarefa excluída';
+    header('location: tarefas.php');
+    exit;  
 
 }
 

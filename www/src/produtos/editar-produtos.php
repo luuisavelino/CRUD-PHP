@@ -9,7 +9,10 @@ use \App\Infrastructure\Repository\ProdutoDao;
 define('TITLE','Edição de Produto');
 
 if(!isset($_GET['id']) or !is_numeric($_GET['id'])){
-    header('location: produtos.php?status=error');
+    $_SESSION['time'] = time();
+    $_SESSION['status'] = 'error';
+    $_SESSION['typeError'] = 'ID do produto inválido';
+    header('location: produtos.php');
     exit;
 }
 
@@ -17,7 +20,10 @@ $produtoDao = new ProdutoDao();
 $produtoSelecionado = $produtoDao->readCliente($_GET['id']);
 
 if(empty($produtoSelecionado)){
-    header('location: produtos.php?status=error');
+    $_SESSION['time'] = time();
+    $_SESSION['status'] = 'error';
+    $_SESSION['typeError'] = 'Nenhum produto selecionado';
+    header('location: produtos.php');
     exit;
 }
 
@@ -25,7 +31,10 @@ if(empty($produtoSelecionado)){
 if ($_SERVER["REQUEST_METHOD"] === 'POST'){
 
     if (empty($_POST['codigo']) || empty($_POST['nome']) || empty($_POST['preco']) || empty($_POST['descricao'])) {
-        header('location: produtos.php?status=error');
+        $_SESSION['time'] = time();
+        $_SESSION['status'] = 'error';
+        $_SESSION['typeError'] = 'Campos não preenchidos';
+        header('location: produtos.php');
         exit;
     }
 
@@ -39,7 +48,10 @@ if ($_SERVER["REQUEST_METHOD"] === 'POST'){
     $ProdutoDao = new ProdutoDao();
     $ProdutoDao->update($produto);
 
-    header('location: produtos.php?status=success');
+    $_SESSION['time'] = time();
+    $_SESSION['status'] = 'success';
+    $_SESSION['typeSuccess'] = 'Produto editado';
+    header('location: produtos.php');
     exit;
 }
 

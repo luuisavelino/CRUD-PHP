@@ -11,7 +11,10 @@ define('TITLE','Cadastro de Produto');
 if ($_SERVER["REQUEST_METHOD"] === 'POST'){
 
     if (empty($_POST['codigo']) || empty($_POST['nome']) || empty($_POST['preco']) || empty($_POST['descricao'])) {
-        header('location: produtos.php?status=error');
+        $_SESSION['time'] = time();
+        $_SESSION['status'] = 'error';
+        $_SESSION['typeError'] = 'Campos não preenchidos';
+        header('location: produtos.php');
         exit;
     }
 
@@ -24,7 +27,10 @@ if ($_SERVER["REQUEST_METHOD"] === 'POST'){
     $ProdutoDao = new ProdutoDao();
     $ProdutoDao->create($produto);
 
-    header('location: produtos.php?status=success');
+    $_SESSION['time'] = time();
+    $_SESSION['status'] = 'success';
+    $_SESSION['typeSuccess'] = 'Novo produto cadastrado';
+    header('location: produtos.php');
     exit;
 
 }

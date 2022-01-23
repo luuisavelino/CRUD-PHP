@@ -7,7 +7,10 @@ use \App\Infrastructure\Repository\ProdutoDao;
 
 
 if(!isset($_GET['id']) or !is_numeric($_GET['id'])){
-    header('location: produtos.php?status=error');
+    $_SESSION['time'] = time();
+    $_SESSION['status'] = 'error';
+    $_SESSION['typeError'] = 'ID do produto inválido';
+    header('location: produtos.php');
     exit;
 }
 
@@ -20,7 +23,10 @@ if (isset($_POST['excluir'])){
     $ProdutoDao = new ProdutoDao();
     $ProdutoDao->delete([$_GET['id']]);
 
-    header('location: produtos.php?status=success');
+    $_SESSION['time'] = time();
+    $_SESSION['status'] = 'error';
+    $_SESSION['typeError'] = 'Produto excluído';
+    header('location: produtos.php');
     exit;
 }
 

@@ -1,14 +1,21 @@
 <?php
 
+if (time() - $_SESSION['time'] > 10) { // sessão iniciada há mais de 10 segundos
+  unset($_SESSION['time']);
+  unset($_SESSION['status']);
+  unset($_SESSION['typeError']);
+  unset($_SESSION['typeSuccess']);
+}
+
 $mensagem = '';
-if(isset($_GET['status'])){
-  switch ($_GET['status']) {
+if(isset($_SESSION['time'])){
+  switch ($_SESSION['status']) {
     case 'success':
-      $mensagem = '<div class="alert alert-success">Ação executada com sucesso!</div>';
+      $mensagem = '<div class="alert alert-success">Ação executada com sucesso! '.$_SESSION['typeSuccess'].'.</div>';
       break;
 
     case 'error':
-      $mensagem = '<div class="alert alert-danger">Ação não executada!</div>';
+      $mensagem = '<div class="alert alert-danger">'.$_SESSION['typeError'].'. Ação não executada!</div>';
       break;
   }
 }

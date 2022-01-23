@@ -23,11 +23,18 @@ if (!empty($produtosID['excluirProduto'])) {
         $ProdutoDao = new ProdutoDao();
         $ProdutoDao->delete($ids);
     
-        header('location: produtos.php?status=success');
+        $_SESSION['time'] = time();
+        $_SESSION['status'] = 'success';
+        $_SESSION['typeSuccess'] = 'Produtos excluidos';
+        header('location: produtos.php');
         exit;
 
     } else {
-        header('location: produtos.php?status=error');
+        $_SESSION['time'] = time();
+        $_SESSION['status'] = 'error';
+        $_SESSION['typeError'] = 'Nenhum produto selecionado';
+        header('location: produtos.php');
+        exit;
     }
 }
 

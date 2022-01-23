@@ -16,8 +16,11 @@ if ($_SERVER["REQUEST_METHOD"] === 'POST'){
 
     
     if (empty($_POST['tarefa']) || empty($_POST['prazo']) || empty($_POST['status'])) {
-        header('location: tarefas.php?status=error');
-        exit;
+        $_SESSION['time'] = time();
+        $_SESSION['status'] = 'error';
+        $_SESSION['typeError'] = 'Campos não preenchidos';
+        header('location: tarefas.php');
+        exit;        
     }
 
 
@@ -32,7 +35,10 @@ if ($_SERVER["REQUEST_METHOD"] === 'POST'){
     
 
     
-    header('location: tarefas.php?status=success');
+    $_SESSION['time'] = time();
+    $_SESSION['status'] = 'success';
+    $_SESSION['typeSuccess'] = 'Nova tarefa criada';
+    header('location: tarefas.php');
     exit;
 
 }

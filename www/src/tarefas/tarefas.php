@@ -21,11 +21,18 @@ if (!empty($tarefasID['excluirTarefa'])) {
         $TarefaDao = new TarefaDao();
         $TarefaDao->delete($ids);
     
-        header('location: tarefas.php?status=success');
-        exit;
+        $_SESSION['time'] = time();
+        $_SESSION['status'] = 'success';
+        $_SESSION['typeSuccess'] = 'Tarefas excluídas';
+        header('location: tarefas.php');
+        exit;  
 
     } else {
-        header('location: tarefas.php?status=error');
+        $_SESSION['time'] = time();
+        $_SESSION['status'] = 'error';
+        $_SESSION['typeError'] = 'Nenhuma tarefa selecionada';
+        header('location: tarefas.php');
+        exit;  
     }
 }
 
