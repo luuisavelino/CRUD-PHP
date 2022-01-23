@@ -30,7 +30,7 @@ if(empty($produtoSelecionado)){
 
 if ($_SERVER["REQUEST_METHOD"] === 'POST'){
 
-    if (empty($_POST['codigo']) || empty($_POST['nome']) || empty($_POST['preco']) || empty($_POST['descricao'])) {
+    if (empty($_POST['codigo']) || empty($_POST['nome']) || empty($_POST['preco']) || empty($_POST['quantidade']) || empty($_POST['descricao'])) {
         $_SESSION['time'] = time();
         $_SESSION['status'] = 'error';
         $_SESSION['typeError'] = 'Campos não preenchidos';
@@ -43,6 +43,7 @@ if ($_SERVER["REQUEST_METHOD"] === 'POST'){
     $produto->setCodigo($_POST['codigo']);
     $produto->setNome($_POST['nome']);
     $produto->setPreco($_POST['preco']);
+    $produto->setQuantidade($_POST['quantidade']);
     $produto->setDescricao($_POST['descricao']);
 
     $ProdutoDao = new ProdutoDao();

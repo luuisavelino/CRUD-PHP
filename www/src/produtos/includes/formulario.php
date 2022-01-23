@@ -26,6 +26,11 @@
     </div>
 
     <div class="form-group">
+      <label>Quantidade</label>
+      <input type="text" class="form-control" name="quantidade" value="<?php echo isset($produtoSelecionado[0]['quantidade']) ? $produtoSelecionado[0]['quantidade'] : null; ?>">
+    </div>
+
+    <div class="form-group">
       <label>Descrição</label>
       <textarea class="form-control" name="descricao" rows="4"><?php echo isset($produtoSelecionado[0]['descricao']) ? $produtoSelecionado[0]['descricao'] : null; ?></textarea>
     </div>

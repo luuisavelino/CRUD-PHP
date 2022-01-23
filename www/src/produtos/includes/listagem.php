@@ -45,6 +45,7 @@ if(isset($_SESSION['time'])){
             <th>Codigo</th>
             <th>Nome</th>
             <th>Preço</th>
+            <th>Quantidade</th>
             <th>Descrição</th>
             <th data-sortable="false">Ações</th>
           </tr> 
@@ -59,6 +60,7 @@ if(isset($_SESSION['time'])){
             <td><?=$produto['codigo']?></td>
             <td><?=$produto['nome']?></td>
             <td><?=$produto['preco']?></td>
+            <td><?=$produto['quantidade']?></td>
             <td><?=$produto['descricao']?></td>
             <td> 
               <a href="editar-produtos.php?id=<?=$produto['id']?>"><button type="button" class="btn btn-primary btn-sm">

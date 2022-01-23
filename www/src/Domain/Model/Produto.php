@@ -4,7 +4,7 @@ namespace App\Domain\Model;
 
 class Produto {
 
-    public $id, $codigo, $nome, $preco, $descricao;
+    public $id, $codigo, $nome, $preco, $quantidade, $descricao;
 
     public function getId() {
         return $this->id;
@@ -36,6 +36,14 @@ class Produto {
 
     public function setPreco($preco) {
         $this->preco = $preco;
+    }
+
+    public function getQuantidade() {
+        return $this->quantidade;
+    }
+
+    public function setQuantidade($quantidade) {
+        $this->quantidade = $quantidade;
     }
 
     public function getDescricao() {

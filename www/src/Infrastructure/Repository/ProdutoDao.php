@@ -9,13 +9,14 @@ class ProdutoDao {
 
     public function create(Produto $p) {
 
-        $query = 'INSERT INTO produtos (codigo, nome, preco, descricao) VALUES (?,?,?,?)';        
+        $query = 'INSERT INTO produtos (codigo, nome, preco, quantidade, descricao) VALUES (?,?,?,?,?)';        
         
         $stmt = Conexao::getConn()->prepare($query);
         $stmt->bindValue(1, $p->getCodigo());
         $stmt->bindValue(2, $p->getNome());
         $stmt->bindValue(3, $p->getpreco());
-        $stmt->bindValue(4, $p->getDescricao());
+        $stmt->bindValue(4, $p->getQuantidade());
+        $stmt->bindValue(5, $p->getDescricao());
         $stmt->execute();
     }
 
@@ -55,14 +56,15 @@ class ProdutoDao {
 
 
     public function update(Produto $p) {
-        $query = 'UPDATE produtos SET codigo = ?, nome = ?, preco = ?, descricao = ? WHERE id = ?';
+        $query = 'UPDATE produtos SET codigo = ?, nome = ?, preco = ?, quantidade = ?,descricao = ? WHERE id = ?';
 
         $stmt = Conexao::getConn()->prepare($query);
         $stmt->bindValue(1, $p->getCodigo());
         $stmt->bindValue(2, $p->getNome());
         $stmt->bindValue(3, $p->getPreco());
-        $stmt->bindValue(4, $p->getDescricao());
-        $stmt->bindValue(5, $p->getId());
+        $stmt->bindValue(4, $p->getQuantidade());
+        $stmt->bindValue(5, $p->getDescricao());
+        $stmt->bindValue(6, $p->getId());
         
         $stmt->execute();
     }
