@@ -10,8 +10,6 @@ $produtos = $produtoDao->read();
 
 $produtosID = filter_input_array(INPUT_POST, FILTER_DEFAULT);
 
-
-
 if (!empty($produtosID['excluirProduto'])) {
     if(isset($produtosID['excluir'])) {
         $i=0;

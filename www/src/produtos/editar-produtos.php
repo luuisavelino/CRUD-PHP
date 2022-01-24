@@ -38,6 +38,38 @@ if ($_SERVER["REQUEST_METHOD"] === 'POST'){
         exit;
     }
 
+    //Pega a entrada e retira todos os caracteres especiais
+    function filtroEntrada($entrada)
+    {
+        $text = preg_replace("/[^a-zA-Z0-9]+/", "", $entrada);
+        return $text;
+    }
+
+    //Compara se a entrada possui ou não caracteres especiais
+    if ($_POST['nome'] != filtroEntrada($_POST['nome']) || $_POST['descricao'] != filtroEntrada($_POST['descricao'])) {
+        $_SESSION['time'] = time();
+        $_SESSION['status'] = 'error';
+        $_SESSION['typeError'] = 'Caracteres inválidos';
+        header('location: produtos.php');
+        exit;
+    }
+
+    //Pega a entrada e deixa somente números e ponto
+    function filtroEntradaNumero($entrada)
+    {
+        $text = preg_replace("/[^0-9\.]+/", "", $entrada);
+        return $text;
+    }
+
+    //Compara se a entrada possui somente números
+    if ($_POST['codigo'] != filtroEntradaNumero($_POST['codigo']) || $_POST['preco'] != filtroEntradaNumero($_POST['preco']) || $_POST['quantidade'] != filtroEntradaNumero($_POST['quantidade'])) {
+        $_SESSION['time'] = time();
+        $_SESSION['status'] = 'error';
+        $_SESSION['typeError'] = 'Caracteres inválidos';
+        header('location: produtos.php');
+        exit;
+    }
+
     $produto = new Produto();
     $produto->setId($_GET['id']);
     $produto->setCodigo($_POST['codigo']);

@@ -30,14 +30,14 @@ if ($_SERVER["REQUEST_METHOD"] === 'POST'){
         $_SESSION['time'] = time();
         $_SESSION['status'] = 'error';
         $_SESSION['typeError'] = 'Caracteres inválidos';
-        header('location: tarefas.php');
+        header('location: produtos.php');
         exit;
     }
 
-    //Pega a entrada e deixa somente números
+    //Pega a entrada e deixa somente números e ponto
     function filtroEntradaNumero($entrada)
     {
-        $text = preg_replace("/[^0-9]+/", "", $entrada);
+        $text = preg_replace("/[^0-9\.]+/", "", $entrada);
         return $text;
     }
 
@@ -46,11 +46,9 @@ if ($_SERVER["REQUEST_METHOD"] === 'POST'){
         $_SESSION['time'] = time();
         $_SESSION['status'] = 'error';
         $_SESSION['typeError'] = 'Caracteres inválidos';
-        header('location: tarefas.php');
+        header('location: produtos.php');
         exit;
     }
-
-
 
     $produto = new Produto();
     $produto->setCodigo($_POST['codigo']);

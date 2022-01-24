@@ -28,10 +28,10 @@ Este é um projeto que foi desenvolvido para o Challenge da Made4it
 
     CREATE TABLE `produtos` (
     `id` INT(11) NOT NULL AUTO_INCREMENT,
-    `codigo` VARCHAR(255) NOT NULL COLLATE 'utf8_general_ci',
+    `codigo` INT(11) NOT NULL COLLATE 'utf8_general_ci',
     `nome` VARCHAR(255) NOT NULL COLLATE 'utf8_general_ci',
-    `preco` VARCHAR(255) NOT NULL COLLATE 'utf8_general_ci',
-    `quantidade` VARCHAR(255) NOT NULL COLLATE 'utf8_general_ci',
+    `preco` decimal(15,2) NOT NULL COLLATE 'utf8_general_ci',
+    `quantidade` INT(11) NOT NULL COLLATE 'utf8_general_ci',
     `descricao` TEXT(65535) NOT NULL COLLATE 'utf8_general_ci',
     PRIMARY KEY (`id`) USING BTREE
     )
