@@ -26,7 +26,7 @@ if ($_SERVER["REQUEST_METHOD"] === 'POST'){
     //Pega a entrada e retira todos os caracteres especiais
     function filtroEntrada($entrada)
     {
-        $text = preg_replace("/[^a-zA-Z0-9]+/", "", $entrada);
+        $text = preg_replace("/[^a-zA-Z0-9 ]+/", "", $entrada);
         return $text;
     }
 

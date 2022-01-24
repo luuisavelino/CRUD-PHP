@@ -3,7 +3,7 @@
 require_once './sessao-produtos.php';
 require_once '../../vendor/autoload.php';
 
-use \App\Infrastructure\Repository\ProdutoDao;
+use \App\Infrastructure\Repository\{ProdutoDao, EstatisticasDao};
 
 
 if(!isset($_GET['id']) or !is_numeric($_GET['id'])){
@@ -14,14 +14,18 @@ if(!isset($_GET['id']) or !is_numeric($_GET['id'])){
     exit;
 }
 
-$produtoDao = new ProdutoDao();
-$produtoSelecionado = $produtoDao->readCliente($_GET['id']);
+$produtoSelecionadoDao = new ProdutoDao();
+$produtoSelecionado = $produtoSelecionadoDao->readProduto($_GET['id']);
+$codigoProdutoSelecionado = $produtoSelecionadoDao->readProduto($_GET['id'])[0]['codigo'];
 
 
 if (isset($_POST['excluir'])){
 
     $ProdutoDao = new ProdutoDao();
     $ProdutoDao->delete([$_GET['id']]);
+
+    $EstatisticasDao = new EstatisticasDao();
+    $EstatisticasDao->delete([$codigoProdutoSelecionado]);
 
     $_SESSION['time'] = time();
     $_SESSION['status'] = 'success';

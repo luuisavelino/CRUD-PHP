@@ -40,7 +40,7 @@ class ProdutoDao {
     }
 
 
-    public function readCliente($id) {
+    public function readProduto($id) {
   
         $query = 'SELECT * FROM produtos WHERE id ='.$id;
 

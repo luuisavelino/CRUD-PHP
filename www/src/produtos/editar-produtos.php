@@ -3,8 +3,8 @@
 require_once './sessao-produtos.php';
 require_once '../../vendor/autoload.php';
 
-use \App\Domain\Model\Produto;
-use \App\Infrastructure\Repository\ProdutoDao;
+use \App\Domain\Model\{Produto, Estatisticas, AtualizarCodigo};
+use \App\Infrastructure\Repository\{ProdutoDao, EstatisticasDao};
 
 define('TITLE','Edição de Produto');
 
@@ -16,8 +16,10 @@ if(!isset($_GET['id']) or !is_numeric($_GET['id'])){
     exit;
 }
 
-$produtoDao = new ProdutoDao();
-$produtoSelecionado = $produtoDao->readCliente($_GET['id']);
+$produtoSelecionadoDao = new ProdutoDao();
+$produtoSelecionado = $produtoSelecionadoDao->readProduto($_GET['id']);
+$codigoProdutoSelecionado = $produtoSelecionado[0]['codigo'];
+
 
 if(empty($produtoSelecionado)){
     $_SESSION['time'] = time();
@@ -41,7 +43,7 @@ if ($_SERVER["REQUEST_METHOD"] === 'POST'){
     //Pega a entrada e retira todos os caracteres especiais
     function filtroEntrada($entrada)
     {
-        $text = preg_replace("/[^a-zA-Z0-9]+/", "", $entrada);
+        $text = preg_replace("/[^a-zA-Z0-9 ]+/", "", $entrada);
         return $text;
     }
 
@@ -80,6 +82,42 @@ if ($_SERVER["REQUEST_METHOD"] === 'POST'){
 
     $ProdutoDao = new ProdutoDao();
     $ProdutoDao->update($produto);
+
+
+    //Cadastrando ação no estoque
+    if ($_POST['codigo'] != $codigoProdutoSelecionado) {
+        
+        $atualizarCodigo = new AtualizarCodigo();
+        $atualizarCodigo->setCodigoAntigo($codigoProdutoSelecionado);
+        $atualizarCodigo->setCodigo($_POST['codigo']);
+        
+        $EstatisticasDao = new EstatisticasDao();
+        $EstatisticasDao->update($atualizarCodigo);
+
+        if ($_POST['preco'] == $produtoSelecionado[0]['preco'] && $_POST['quantidade'] == $produtoSelecionado[0]['quantidade']) {
+            
+            echo "<pre>"; print_r($_POST['quantidade']); echo "</pre>";
+            echo "<pre>"; print_r($produtoSelecionado[0]['quantidade']); echo "</pre>"; exit;
+
+            $_SESSION['time'] = time();
+            $_SESSION['status'] = 'success';
+            $_SESSION['typeSuccess'] = 'Produto editado';
+            header('location: produtos.php');
+            exit;
+        }
+    }
+
+    if ($_POST['preco'] != $produtoSelecionado[0]['preco'] || $_POST['quantidade'] != $produtoSelecionado[0]['quantidade']) {
+        
+        $estatisticas = new Estatisticas();
+        $estatisticas->setCodigo($_POST['codigo']);
+        $estatisticas->setPreco($_POST['preco']);
+        $estatisticas->setQuantidade($_POST['quantidade']);
+        
+        $EstatisticasDao = new EstatisticasDao();
+        $EstatisticasDao->create($estatisticas);
+
+    }
 
     $_SESSION['time'] = time();
     $_SESSION['status'] = 'success';

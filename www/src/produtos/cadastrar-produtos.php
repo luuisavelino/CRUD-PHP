@@ -5,6 +5,8 @@ require_once '../../vendor/autoload.php';
 
 use \App\Domain\Model\Produto;
 use \App\Infrastructure\Repository\ProdutoDao;
+use App\Domain\Model\Estatisticas;
+use \App\Infrastructure\Repository\EstatisticasDao;
 
 define('TITLE','Cadastro de Produto');
 
@@ -21,7 +23,7 @@ if ($_SERVER["REQUEST_METHOD"] === 'POST'){
     //Pega a entrada e retira todos os caracteres especiais
     function filtroEntrada($entrada)
     {
-        $text = preg_replace("/[^a-zA-Z0-9]+/", "", $entrada);
+        $text = preg_replace("/[^a-zA-Z0-9 ]+/", "", $entrada);
         return $text;
     }
 
@@ -29,7 +31,7 @@ if ($_SERVER["REQUEST_METHOD"] === 'POST'){
     if ($_POST['nome'] != filtroEntrada($_POST['nome']) || $_POST['descricao'] != filtroEntrada($_POST['descricao'])) {
         $_SESSION['time'] = time();
         $_SESSION['status'] = 'error';
-        $_SESSION['typeError'] = 'Caracteres inválidos';
+        $_SESSION['typeError'] = 'Caracteres inválidossssss';
         header('location: produtos.php');
         exit;
     }
@@ -50,6 +52,7 @@ if ($_SERVER["REQUEST_METHOD"] === 'POST'){
         exit;
     }
 
+    //Criando novo produto
     $produto = new Produto();
     $produto->setCodigo($_POST['codigo']);
     $produto->setNome($_POST['nome']);
@@ -59,6 +62,17 @@ if ($_SERVER["REQUEST_METHOD"] === 'POST'){
 
     $ProdutoDao = new ProdutoDao();
     $ProdutoDao->create($produto);
+
+
+    //Cadastrando ação no estoque
+    $estatisticas = new Estatisticas();
+    $estatisticas->setCodigo($_POST['codigo']);
+    $estatisticas->setPreco($_POST['preco']);
+    $estatisticas->setQuantidade($_POST['quantidade']);
+
+    $EstatisticasDao = new EstatisticasDao();
+    $EstatisticasDao->create($estatisticas);
+
 
     $_SESSION['time'] = time();
     $_SESSION['status'] = 'success';

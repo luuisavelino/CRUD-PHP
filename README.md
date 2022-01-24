@@ -21,6 +21,9 @@ Este é um projeto que foi desenvolvido para o Challenge da Made4it
     `permissao` ENUM('superadmin','admin','usuario') NOT NULL COLLATE 'utf8_general_ci',
     PRIMARY KEY (`id`) USING BTREE
     )
+    COLLATE='utf8_general_ci'
+    AUTO_INCREMENT=1;
+
     INSERT INTO usuarios (usuario, senha, email, empresa, permissao) VALUES ('root',md5('admin'),'root@root.com','CRUD-PHP','superadmin');
 
     CREATE TABLE `produtos` (
@@ -32,6 +35,8 @@ Este é um projeto que foi desenvolvido para o Challenge da Made4it
     `descricao` TEXT(65535) NOT NULL COLLATE 'utf8_general_ci',
     PRIMARY KEY (`id`) USING BTREE
     )
+    COLLATE='utf8_general_ci'
+    AUTO_INCREMENT=1;
 
     CREATE TABLE `tarefas` (
     `id` INT(11) NOT NULL AUTO_INCREMENT,
@@ -40,11 +45,13 @@ Este é um projeto que foi desenvolvido para o Challenge da Made4it
     `status` ENUM('fazer','fazendo','cancelado','finalizado') NOT NULL COLLATE 'utf8_general_ci',
     PRIMARY KEY (`id`) USING BTREE
     )
-
-    CREATE TABLE `estoque` (
-    `id` INT(11) NOT NULL,
-    `preco` decimal(15,2) NOT NULL COLLATE 'utf8_general_ci',
-    `quantidade` INT(11) NOT NULL COLLATE 'utf8_general_ci'
-    )
     COLLATE='utf8_general_ci'
     AUTO_INCREMENT=1;
+
+    CREATE TABLE `estoque` (
+    `data` TIMESTAMP NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+    `codigo` INT(11) NOT NULL COLLATE 'utf8_general_ci',
+    `preco` decimal(15,2) NOT NULL COLLATE 'utf8_general_ci',
+    `quantidade` INT(11) COLLATE 'utf8_general_ci'
+    );
+
