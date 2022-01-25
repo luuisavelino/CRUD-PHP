@@ -3,7 +3,7 @@
     
     <head>
         <meta charset="utf-8">
-        <title>CHALLENGE</title>
+        <title>Sign Up</title>
         <link rel="stylesheet" href="../css/login.css">
     </head>
     <body>  
