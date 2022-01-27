@@ -69,7 +69,6 @@ if(isset($_SESSION['time'])){
               <?php include __DIR__.'/popUp.php'; ?>
               
 
-
             </td>
           </tr>
           <?php endforeach; ?>
@@ -79,6 +78,7 @@ if(isset($_SESSION['time'])){
     </form>
   </section> 
 </main>
+
 
 
 <script src="../js/produtos.js"></script>

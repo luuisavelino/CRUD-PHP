@@ -18,9 +18,9 @@ checkIndex.addEventListener('click', () => {
 
 
 //Abrem o PopUp
-function abrirPopUp(id){
+function abrirPopUp(){
   document.getElementById('popup').style.display = 'block';
-  console.log(id);
+  console.log();
 }
 
 function ampliarPopUp(){
@@ -36,6 +36,8 @@ function diminuirPopUp(){
   document.getElementById('popup').style.width = '45%';
   document.getElementById('popup').style.height = '65%';
 }
+
+
 
 
 
