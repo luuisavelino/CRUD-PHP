@@ -51,7 +51,7 @@ session_start();
                 
                 <input name="usuario" type="text" class="fadeIn second"  placeholder="usuário">
                 <input name="senha" type="password" required="required" class="fadeIn third" placeholder="senha">
-                <input type="submit" class="fadeIn fourth" value="Log In">
+                <input type="submit" class="fadeIn fourth" value="LogIn">
                 
             </form>
 
