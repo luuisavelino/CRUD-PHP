@@ -1,13 +1,5 @@
 # CHALLENGE
 
-## Objetivos
-Este é um projeto que foi desenvolvido para o Challenge da Made4it
-
-
-
-
-
-
 ## COMANDOS DO BANCO DE DADOS 
 
     USE challenge;
