@@ -63,7 +63,6 @@ if ($_SERVER["REQUEST_METHOD"] === 'POST'){
     $ProdutoDao = new ProdutoDao();
     $ProdutoDao->create($produto);
 
-
     //Cadastrando ação no estoque
     $estatisticas = new Estatisticas();
     $estatisticas->setCodigo($_POST['codigo']);
