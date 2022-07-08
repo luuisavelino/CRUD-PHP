@@ -13,9 +13,15 @@ class Conexao {
         $database = getenv("DATABASE_DB");
         $user = getenv("USER_DB");
         $senha = getenv("PASS_DB");
+        $port = getenv("PORT_DB");
 
         if (!isset(self::$instance)) {
-            self::$instance = new PDO('mysql:host='. $host .';dbname='. $database .';charset=utf8', $user, $senha);
+            try {
+                self::$instance = new PDO('mysql:host='. $host .';port='. $port .';dbname='. $database .';charset=utf8', $user, $senha);
+            } catch (\PDOException $e) {
+                print "Error!: " . $e->getMessage() . "<br/>";
+                die();
+            }
         }
 
         return self::$instance;
