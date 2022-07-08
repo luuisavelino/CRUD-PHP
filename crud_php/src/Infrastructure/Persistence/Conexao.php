@@ -21,6 +21,3 @@ class Conexao {
         return self::$instance;
     }
 }
-
-$teste = new Conexao();
-$teste->getConn();
